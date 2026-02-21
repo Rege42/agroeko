@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>АгроПоле | Совместимость культур</title>
+    <link rel="stylesheet" href="/static/stylesheets/variables.css" />
+    <link rel="stylesheet" href="/static/stylesheets/button-style.css" />
+    <link rel="stylesheet" href="/static/stylesheets/input.css" />
+    <link rel="stylesheet" href="/static/stylesheets/items.css" />
+    <link rel="stylesheet" href="/static/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <!-- Шапка -->
+    <header class="header">
+      <a href="/index.html" class="logo">
+        <img src="/static/assets/logo.png" alt="Логотип" class="logo-img" />
+      </a>
+      <div class="login-section">
+        <button class="login-button">
+          <span class="login-text">Вход</span>
+          <img src="/static/assets/login.png" alt="Иконка входа" class="login-icon" />
+        </button>
+      </div>
+    </header>
+
+    <!-- Навигационная панель -->
+    <nav class="sidebar">
+      <ul class="nav-links">
+        <ul class="nav-links">
+          <li class="nav-item-pressed">
+            <input type="radio" name="nav-menu" id="seed-menu" class="menu-toggle" />
+            <label for="seed-menu" class="nav-icon-container">
+              <img src="/static/assets/seed.png" alt="Иконка севооборота" class="nav-icon" />
+            </label>
+            <ul class="submenu">
+              <li><a href="/crop-rotation/crops-history/crops-history.html">История посевов</a></li>
+              <li><a href="/crop-rotation/add-field/crops-history-add-field.html">Добавить поле</a></li>
+              <li><a href="/crop-rotation/crops-compability/crops-compatibility.html">Совместимость культур</a></li>
+              <li><a href="/crop-rotation/agrotechnical-plan/agrotechnical-plan.html">Агротехнологический план</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/map.png" alt="Иконка карт" class="nav-icon" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <input type="radio" name="nav-menu" id="analysis-menu" class="menu-toggle" />
+            <label for="analysis-menu" class="nav-icon-container">
+              <img src="/static/assets/analisys.png" alt="Иконка аналитик" class="nav-icon" />
+            </label>
+            <ul class="submenu">
+              <li><a href="/analitics/indicators/indicators.html">Показатели предприятия</a></li>
+              <li><a href="/analitics/forecasting/forecasting.html">Прогнозирование</a></li>
+              <li><a href="/analitics/reports/reports.html">Отчетность</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/techmap.png" alt="Иконка тех карт" class="nav-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/tech.png" alt="Иконка техники" class="nav-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/glossary.png" alt="Иконка справочников" class="nav-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/settings.png" alt="Иконка настроек" class="nav-icon" />
+            </a>
+          </li>
+        </ul>
+
+        <div class="empty-icon-container">
+          <div class="empty-icon">
+            <img src="/static/assets/unwrap.png" alt="Иконка раскрытия" class="nav-icon" />
+          </div>
+        </div>
+      </ul>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <main class="main-content">
+      <div class="search-bar">
+        <label for="field-search">Поиск:</label>
+        <input
+          class="standart-input medium-width"
+          type="text"
+          id="field-search"
+          placeholder="Введите название поля..."
+        />
+        <button class="standart-button">Найти</button>
+        <a class="right-position" href="crop-selection-form.html">
+          <button class="standart-button right-position">Подобрать культуру</button>
+        </a>
+      </div>
+
+      <div style="padding: 20px">
+        <table class="standart-table full-width margin-top-30px">
+          <tr>
+            <th rowspan="2" class="border-bottom">
+              Культуры, допустимый срок возврата на прежнее поле по фитосанитарным условиям, лет
+            </th>
+            <th colspan="20" class="border-bottom">Предшественник</th>
+            <th colspan="3" class="border-bottom">промежуточные</th>
+          </tr>
+          <tr>
+            <th class="vertical border-bottom">оз. рожь</th>
+            <th class="vertical border-bottom">оз. пшеница</th>
+            <th class="vertical border-bottom">ячмень</th>
+            <th class="vertical border-bottom">яровая пшеница</th>
+            <th class="vertical border-bottom">рис</th>
+            <th class="vertical border-bottom">овес</th>
+            <th class="vertical border-bottom">просо</th>
+            <th class="vertical border-bottom">гречка</th>
+            <th class="vertical border-bottom">кукуруза на зерно</th>
+            <th class="vertical border-bottom">горох</th>
+            <th class="vertical border-bottom">вика</th>
+            <th class="vertical border-bottom">картофель</th>
+            <th class="vertical border-bottom">лен</th>
+            <th class="vertical border-bottom">свекла корм.</th>
+            <th class="vertical border-bottom">свекла</th>
+            <th class="vertical border-bottom">кукуруза</th>
+            <th class="vertical border-bottom">долючные травы</th>
+            <th class="vertical border-bottom">(однолетние)</th>
+            <th class="vertical border-bottom">многолетние злак. травы</th>
+            <th class="vertical border-bottom">люцерна</th>
+            <th class="vertical border-bottom">поукосные</th>
+            <th class="vertical border-bottom">поживные</th>
+          </tr>
+          <tr>
+            <td>Озимая рожь 1–2</td>
+            <td class="color-yellow"></td>
+            <td class="color-green"></td>
+            <td class="color-green"></td>
+            <td class="color-yellow"></td>
+            <td class="color-green"></td>
+            <td class="color-green"></td>
+            <td class="color-yellow"></td>
+            <td class="color-blue"></td>
+            <td class="color-blue"></td>
+            <td class="color-brown"></td>
+            <td class="color-brown"></td>
+            <td class="color-blue"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+            <td class="color-blue"></td>
+            <td class="color-brown"></td>
+            <td class="color-brown"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+          </tr>
+          <tr>
+            <td>Оз. пшеница, оз, ячмень 2-3</td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+            <td class="color-green"></td>
+            <td class="color-red"></td>
+            <td class="color-green"></td>
+            <td class="color-green"></td>
+            <td class="color-blue"></td>
+            <td class="color-brown"></td>
+            <td class="color-brown"></td>
+            <td class="color-blue"></td>
+            <td class="color-blue"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+            <td class="color-blue"></td>
+            <td class="color-brown"></td>
+            <td class="color-brown"></td>
+            <td class="color-brown"></td>
+            <td class="color-brown"></td>
+            <td class="color-green"></td>
+            <td class="color-red"></td>
+            <td class="color-red"></td>
+          </tr>
+        </table>
+
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color color-brown"></div>
+            Отличный
+          </div>
+          <div class="legend-item">
+            <div class="legend-color color-green"></div>
+            Хороший
+          </div>
+          <div class="legend-item">
+            <div class="legend-color color-yellow"></div>
+            Допустимый
+          </div>
+          <div class="legend-item">
+            <div class="legend-color color-blue"></div>
+            Хороший но не всегда возможный
+          </div>
+          <div class="legend-item">
+            <div class="legend-color color-red"></div>
+            Размещение не допустимо
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

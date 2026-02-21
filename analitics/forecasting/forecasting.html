@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АгроПоле | Прогнозирование</title>
+
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link rel="stylesheet" href="/static/stylesheets/tile_style.css">
+</head>
+
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <a href="/index.html" class="logo">
+            <img src="/static/assets/logo.png" alt="Логотип" class="logo-img">
+        </a>
+        <div class="login-section">
+            <button class="login-button">
+                <span class="login-text">Вход</span>
+                <img src="/static/assets/login.png" alt="Иконка входа" class="login-icon">
+            </button>
+        </div>
+    </header>
+
+    <!-- Навигационная панель -->
+    <nav class="sidebar">
+        <ul class="nav-links">
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <input type="radio" name="nav-menu" id="seed-menu" class="menu-toggle">
+                    <label for="seed-menu" class="nav-icon-container">
+                        <img src="/static/assets/seed.png" alt="Иконка севооборота" class="nav-icon">
+                    </label>
+                    <ul class="submenu">
+                        <li><a href="/crop-rotation/crops-history/crops-history.html">История посевов</a></li>
+                        <li><a href="/crop-rotation/add-field/crops-history-add-field.html">Добавить поле</a></li>
+                        <li><a href="/crop-rotation/crops-compability/crops-compatibility.html">Совместимость культур</a></li>
+                        <li><a href="/crop-rotation/agrotechnical-plan/agrotechnical-plan.html">Агротехнологический план</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="nav-link">
+                        <img src="/static/assets/map.png" alt="Иконка карт" class="nav-icon">
+                    </a>
+                </li>
+                <li class="nav-item-pressed">
+                    <input type="radio" name="nav-menu" id="analysis-menu" class="menu-toggle">
+                    <label for="analysis-menu" class="nav-icon-container">
+                        <img src="/static/assets/analisys.png" alt="Иконка аналитик" class="nav-icon">
+                    </label>
+                    <ul class="submenu">
+                        <li><a href="/analitics/indicators/indicators.html">Показатели предприятия</a></li>
+                        <li><a href="/analitics/forecasting/forecasting.html">Прогнозирование</a></li>
+                        <li><a href="/analitics/reports/reports.html">Отчетность</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="nav-link">
+                        <img src="/static/assets/techmap.png" alt="Иконка тех карт" class="nav-icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link">
+                        <img src="/static/assets/tech.png" alt="Иконка техники" class="nav-icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link">
+                        <img src="/static/assets/glossary.png" alt="Иконка справочников" class="nav-icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link">
+                        <img src="/static/assets/settings.png" alt="Иконка настроек" class="nav-icon">
+                    </a>
+                </li>
+            </ul>
+
+            <div class="empty-icon-container">
+                <div class="empty-icon">
+                    <img src="/static/assets/unwrap.png" alt="Иконка раскрытия" class="nav-icon">
+                </div>
+            </div>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <main class="main-content">
+        <div class="tile-container">
+            <a href="forecast_form.html" class="tile">
+                <h3 class="tile-title">Прогноз урожайности</h3>
+                <p class="tile-description">На основе текущих показателей и исторических данных</p>
+            </a>
+
+            <a href="forecast_form.html" class="tile">
+                <h3 class="tile-title">Погодные риски</h3>
+                <p class="tile-description">Прогноз заморозков, засух и осадков</p>
+            </a>
+
+            <a href="forecast_form.html" class="tile">
+                <h3 class="tile-title">Риск вредителей</h3>
+                <p class="tile-description">Прогноз активности насекомых и болезней</p>
+            </a>
+
+            <a href="forecast_form.html" class="tile">
+                <h3 class="tile-title">Рыночный прогноз</h3>
+                <p class="tile-description">Ожидаемые цены на урожай</p>
+            </a>
+
+            <a href="forecast_form.html" class="tile">
+                <h3 class="tile-title">Потребность в поливе</h3>
+                <p class="tile-description">Рекомендации по орошению</p>
+            </a>
+
+            <a href="forecast_form.html" class="tile">
+                <h3 class="tile-title">График роста</h3>
+                <p class="tile-description">Прогноз этапов развития культур</p>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>

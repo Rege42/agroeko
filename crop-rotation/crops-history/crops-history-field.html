@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>АгроПоле | История посевов для поля </title>
+    <link rel="stylesheet" href="/static/stylesheets/variables.css" />
+    <link rel="stylesheet" href="/static/stylesheets/button-style.css" />
+    <link rel="stylesheet" href="/static/stylesheets/input.css" />
+    <link rel="stylesheet" href="/static/stylesheets/items.css" />
+    <link rel="stylesheet" href="/static/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <!-- Шапка -->
+    <header class="header">
+      <a href="/index.html" class="logo">
+        <img src="/static/assets/logo.png" alt="Логотип" class="logo-img" />
+      </a>
+      <div class="login-section">
+        <button class="login-button">
+          <span class="login-text">Вход</span>
+          <img src="/static/assets/login.png" alt="Иконка входа" class="login-icon" />
+        </button>
+      </div>
+    </header>
+
+    <!-- Навигационная панель -->
+    <nav class="sidebar">
+      <ul class="nav-links">
+        <ul class="nav-links">
+          <li class="nav-item-pressed">
+            <input type="radio" name="nav-menu" id="seed-menu" class="menu-toggle" />
+            <label for="seed-menu" class="nav-icon-container">
+              <img src="/static/assets/seed.png" alt="Иконка севооборота" class="nav-icon" />
+            </label>
+            <ul class="submenu">
+              <li><a href="/crop-rotation/crops-history/crops-history.html">История посевов</a></li>
+              <li><a href="/crop-rotation/add-field/crops-history-add-field.html">Добавить поле</a></li>
+              <li><a href="/crop-rotation/crops-compability/crops-compatibility.html">Совместимость культур</a></li>
+              <li><a href="/crop-rotation/agrotechnical-plan/agrotechnical-plan.html">Агротехнологический план</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/map.png" alt="Иконка карт" class="nav-icon" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <input type="radio" name="nav-menu" id="analysis-menu" class="menu-toggle" />
+            <label for="analysis-menu" class="nav-icon-container">
+              <img src="/static/assets/analisys.png" alt="Иконка аналитик" class="nav-icon" />
+            </label>
+            <ul class="submenu">
+              <li><a href="/analitics/indicators/indicators.html">Показатели предприятия</a></li>
+              <li><a href="/analitics/forecasting/forecasting.html">Прогнозирование</a></li>
+              <li><a href="/analitics/reports/reports.html">Отчетность</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/techmap.png" alt="Иконка тех карт" class="nav-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/tech.png" alt="Иконка техники" class="nav-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/glossary.png" alt="Иконка справочников" class="nav-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <img src="/static/assets/settings.png" alt="Иконка настроек" class="nav-icon" />
+            </a>
+          </li>
+        </ul>
+
+        <div class="empty-icon-container">
+          <div class="empty-icon">
+            <img src="/static/assets/unwrap.png" alt="Иконка раскрытия" class="nav-icon" />
+          </div>
+        </div>
+      </ul>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <main class="main-content">
+      <div class="field-header">
+        <h2 class="field-name">Поле 1</h2>
+        <a href="add-crops-history-form.html">
+          <button class="standart-button">Добавить историю</button>
+        </a>
+      </div>
+      <div class="table-wrapper">
+        <table class="standart-table">
+          <thead>
+            <tr>
+              <th>Год</th>
+              <th>Культура</th>
+              <th>Прогнозируемая урожайность</th>
+              <th>Урожайность (ц/га)</th>
+              <th>Замечания</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2023</td>
+              <td>Пшеница</td>
+              <td>40</td>
+              <td>45</td>
+              <td>Хорошая всхожесть</td>
+            </tr>
+            <tr>
+              <td>2022</td>
+              <td>Подсолнечник</td>
+              <td>56</td>
+              <td>48</td>
+              <td>Засушливый сезон</td>
+            </tr>
+            <tr>
+              <td>2021</td>
+              <td>Кукуруза</td>
+              <td>38</td>
+              <td>50</td>
+              <td>Высокая урожайность</td>
+            </tr>
+            <tr>
+              <td>2020</td>
+              <td>Ячмень</td>
+              <td>50</td>
+              <td>52</td>
+              <td>Средние показатели</td>
+            </tr>
+            <tr>
+              <td>2019</td>
+              <td>Пшеница</td>
+              <td>45</td>
+              <td>44</td>
+              <td>Оптимальные условия</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

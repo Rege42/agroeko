@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>АгроПоле | Форма подбора культуры</title>
+    <link rel="stylesheet" href="/static/stylesheets/variables.css" />
+    <link rel="stylesheet" href="/static/stylesheets/button-style.css" />
+    <link rel="stylesheet" href="/static/stylesheets/input.css" />
+    <link rel="stylesheet" href="/static/stylesheets/items.css" />
+    <link rel="stylesheet" href="/static/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="form-overlay">
+      <div class="standart-form">
+        <a href="crops-compatibility.html">
+          <button class="close-button">
+            <img src="/static/assets/close.svg" alt="Закрыть" class="close-icon" />
+          </button>
+        </a>
+
+        <h2>Подбор культуры</h2>
+        <form action="crop-selection.html">
+          <div class="standart-form-group">
+            <label for="field">Поле:</label>
+            <input type="text" id="field" name="field" class="standart-input" />
+          </div>
+          <div class="standart-form-group">
+            <label for="budget">Бюджет:</label>
+            <input type="text" id="budget" name="budget" class="standart-input" pattern="\d*.\d{2}" />
+          </div>
+          <div class="standart-form-group">
+            <button type="submit" class="form-button">Добавить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
