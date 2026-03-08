@@ -14,6 +14,8 @@ import {
   forecastPrice,
 } from './controllers/analyticsController.js';
 import exportRoutes from './routes/exportRoutes.js';
+import Crop from './models/Crop.js';
+import Field from './models/Field.js';
 
 const app = express();
 
@@ -40,6 +42,24 @@ app.get('/health', (req, res) => {
     message: 'Server is running',
     timestamp: new Date().toISOString(),
   });
+});
+
+app.get('/api/crops', async (req, res) => {
+  try {
+    const crops = await Crop.find().select('name _id');
+    res.json({ success: true, data: crops });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/fields', async (req, res) => {
+  try {
+    const fields = await Field.find().select('name _id');
+    res.json({ success: true, data: fields });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 export default app;

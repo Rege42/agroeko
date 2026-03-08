@@ -1,0 +1,209 @@
+/*
+  Набор общих стилей для всего контента модулей аналитики и севооборота
+
+  TODO: Сопоставить данный файл стилей с другими командами и привести к общему виду
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  background-color: white;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Шапка */
+.header {
+  background-color: #2e2e2e;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 20px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.logo-img {
+  height: 100%;
+  width: auto;
+}
+
+.login-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+}
+
+.login-icon {
+  width: 1.5em;
+  height: 1.5em;
+  transition: all 0.3s ease;
+}
+
+.login-text {
+  line-height: 1;
+}
+
+.login-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Навигационная панель */
+.sidebar {
+  background-color: #2e2e2e;
+  width: 60px;
+  height: calc(100vh - 60px);
+  position: fixed;
+  left: 0;
+  top: 60px;
+  padding: 20px 0;
+  z-index: 10000;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 15px; /* Увеличенное расстояние между элементами */
+}
+
+.nav-links li {
+  width: 100%;
+  text-align: center;
+}
+
+.nav-icon {
+  width: 2.5em;
+  height: 2.5em;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.nav-item {
+  position: relative;
+  width: 100%;
+}
+
+.nav-item-pressed {
+  position: relative;
+  width: 100%;
+  background: #000000;
+}
+
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+}
+
+.menu-toggle:checked ~ .submenu {
+  display: block;
+  animation: slideIn 0.2s ease-out;
+}
+
+.nav-icon-container {
+  display: block;
+  cursor: pointer;
+}
+
+/* Закрытие меню при клике вне его */
+.menu-toggle:not(:checked) ~ .submenu {
+  display: none;
+}
+
+/* Для иконок без выпадающего меню */
+.nav-icon-container:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Основное содержимое */
+.main-content {
+  margin-left: 60px;
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+  /* padding: 20px; */
+  flex: 1;
+  background-color: white;
+  color: black;
+  min-height: calc(100vh - 60px);
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Regular.woff2") format("woff2"), url("fonts/Inter-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.small-width {
+  width: 20%;
+}
+
+.medium-width {
+  width: 40%;
+}
+
+.large-width {
+  width: 60%;
+}
+
+.largest-width {
+  width: 80%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.right-position {
+  margin-left: auto;
+}
+
+.margin-top-30px {
+  margin-top: 30px;
+}
