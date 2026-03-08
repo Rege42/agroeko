@@ -1,0 +1,114 @@
+import { createRouter, createWebHistory } from 'vue-router';
+import Forecasting from '../components/analytics/forecast/Forecasting.vue';
+import ForecastForm from '../components/analytics/forecast/ForecastForm.vue';
+import ForecastResult from '../components/analytics/forecast/ForecastResult.vue';
+import Reports from '../components/analytics/reports/Reports.vue';
+import ReportForm from '../components/analytics/reports/ReportForm.vue';
+import ReportResult from '../components/analytics/reports/ReportResult.vue';
+import Indicators from '../components/analytics/indicators/Indicators.vue';
+import IndicatorShowcase from '../components/analytics/indicators/IndicatorShowcase.vue';
+import FieldsList from '../components/crop-rotation/add-field/FieldsList.vue';
+import FieldForm from '../components/crop-rotation/add-field/FieldForm.vue';
+import AgroPlan from '../components/crop-rotation/agrotechnical-plan/AgroPlan.vue';
+import CropsCompatibility from '../components/crop-rotation/crops-compability/CropsCompatibility.vue';
+import CropSelection from '../components/crop-rotation/crops-compability/CropSelection.vue';
+import CropSelectionForm from '../components/crop-rotation/crops-compability/CropSelectionForm.vue';
+import CropsHistory from '../components/crop-rotation/crops-history/CropsHistory.vue';
+import FieldHistory from '../components/crop-rotation/crops-history/FieldHistory.vue';
+import AddCropsHistoryForm from '../components/crop-rotation/crops-history/AddCropsHistoryForm.vue';
+
+const routes = [
+  {
+    path: '/',
+    redirect: '/forecast',
+  },
+  {
+    path: '/forecast',
+    name: 'Forecasting',
+    component: Forecasting,
+  },
+  {
+    path: '/forecast/yield',
+    name: 'ForecastForm',
+    component: ForecastForm,
+  },
+  {
+    path: '/forecast/yield/result',
+    name: 'ForecastResult',
+    component: ForecastResult,
+  },
+  { path: '/reports', 
+    name: 'Reports', 
+    component: Reports 
+  },
+  { path: '/reports/new', 
+    name: 'ReportForm', 
+    component: ReportForm 
+  },
+  { path: '/reports/result', 
+    name: 'ReportResult', 
+    component: ReportResult
+  },
+   {
+    path: '/indicators',
+    name: 'Indicators',
+    component: Indicators,
+  },
+  {
+    path: '/indicators/:id',
+    name: 'IndicatorShowcase',
+    component: IndicatorShowcase,
+  },
+  { path: '/crop-rotation/fields', 
+    name: 'FieldsList', 
+    component: FieldsList 
+  },
+  { 
+    path: '/crop-rotation/fields/new', 
+    name: 'FieldForm', 
+    component: FieldForm 
+  },
+  { 
+    path: '/crop-rotation/fields/:fieldId', 
+    name: 'FieldHistory', 
+    component: FieldHistory 
+  },
+  { 
+    path: '/crop-rotation/agroplan', 
+    name: 'AgroPlan', 
+    component: AgroPlan 
+  },
+  { 
+    path: '/crop-rotation/compatibility', 
+    name: 'CropsCompatibility', 
+    component: CropsCompatibility 
+  },
+  { 
+    path: '/crop-rotation/crop-selection', 
+    name: 'CropSelection', 
+    component: CropSelection
+  },
+  { 
+    path: '/crop-rotation/crop-selection/new', 
+    name: 'CropSelectionForm', 
+    component: CropSelectionForm 
+  },
+  { 
+    path: '/crop-rotation/history', 
+    name: 'CropsHistory', 
+    component: CropsHistory 
+  },
+  { 
+    path: '/crop-rotation/history/:fieldId/add', 
+    name: 'AddCropsHistoryForm', 
+    component: AddCropsHistoryForm 
+  },
+  // Можно добавить другие прогнозы
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+export default router;

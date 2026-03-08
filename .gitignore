@@ -1,2 +1,11 @@
 # Visual Code (vcode)
 /.vscode
+
+# dependencies
+node_modules/
+
+# environment variables
+.env
+
+# debug-scripts
+backend\src\seed-script.js

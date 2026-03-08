@@ -1,0 +1,47 @@
+/*
+    Плитки, использующиесяся для навигации в модуле аналитики
+*/
+
+/* Контейнер для плиток */
+.tile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Стили плиток */
+.tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EBEBEB;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 150px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tile-title {
+    color: #7D5C45;
+    font-size: 1.7rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.tile-description {
+    color: #000;
+    font-size: 0.9rem;
+    margin: 0;
+}
