@@ -15,6 +15,11 @@ import {
   AgroPlan,
   AgroPlanStep,
   FieldOperationLog,
+  Sale,
+  Cost,
+  Procurement,
+  LabourCost,
+  Plan,
 } from './models/index.js';
 
 dotenv.config();
@@ -22,20 +27,25 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const createCollections = async () => {
-  const models = [
-    Field,
-    SoilAnalysis,
-    WeatherObservation,
-    Crop,
-    CropRotationEntry,
-    Recommendation,
-    Fertilizer,
-    PlantProtectionProduct,
-    TechnologyTemplate,
-    AgroPlan,
-    AgroPlanStep,
-    FieldOperationLog,
-  ];
+const models = [
+  Field,
+  SoilAnalysis,
+  WeatherObservation,
+  Crop,
+  CropRotationEntry,
+  Recommendation,
+  Fertilizer,
+  PlantProtectionProduct,
+  TechnologyTemplate,
+  AgroPlan,
+  AgroPlanStep,
+  FieldOperationLog,
+  Sale,
+  Cost,
+  Procurement,
+  LabourCost,
+  Plan,
+];
 
   for (const model of models) {
     try {

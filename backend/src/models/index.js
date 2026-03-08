@@ -10,6 +10,11 @@ import TechnologyTemplate from './TechnologyTemplate.js';
 import AgroPlan from './AgroPlan.js';
 import AgroPlanStep from './AgroPlanStep.js';
 import FieldOperationLog from './FieldOperationLog.js';
+import Sale from './Sale.js';
+import Cost from './Cost.js';
+import Procurement from './Procurement.js';
+import LabourCost from './LabourCost.js';
+import Plan from './Plan.js';
 
 export {
   Field,
@@ -24,4 +29,9 @@ export {
   AgroPlan,
   AgroPlanStep,
   FieldOperationLog,
+  Sale,
+  Cost,
+  Procurement,
+  LabourCost,
+  Plan,
 };
