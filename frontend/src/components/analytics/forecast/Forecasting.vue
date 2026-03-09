@@ -8,27 +8,27 @@
 
       <router-link to="/forecast/weather" class="tile">
         <h3 class="tile-title">Погодные риски</h3>
-        <p class="tile-description">Прогноз заморозков, засух и осадков</p>
+        <p class="tile-description">В разработке</p>
       </router-link>
 
       <router-link to="/forecast/pests" class="tile">
         <h3 class="tile-title">Риск вредителей</h3>
-        <p class="tile-description">Прогноз активности насекомых и болезней</p>
+        <p class="tile-description">В разработке</p>
       </router-link>
 
       <router-link to="/forecast/market" class="tile">
         <h3 class="tile-title">Рыночный прогноз</h3>
-        <p class="tile-description">Ожидаемые цены на урожай</p>
+        <p class="tile-description">В разработке</p>
       </router-link>
 
       <router-link to="/forecast/irrigation" class="tile">
         <h3 class="tile-title">Потребность в поливе</h3>
-        <p class="tile-description">Рекомендации по орошению</p>
+        <p class="tile-description">В разработке</p>
       </router-link>
 
       <router-link to="/forecast/growth" class="tile">
         <h3 class="tile-title">График роста</h3>
-        <p class="tile-description">Прогноз этапов развития культур</p>
+        <p class="tile-description">В разработке</p>
       </router-link>
     </div>
   </main>

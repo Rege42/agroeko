@@ -7,6 +7,11 @@ import LabourCost from '../models/LabourCost.js';
 import CropRotationEntry from '../models/CropRotationEntry.js';
 import Field from '../models/Field.js';
 import Crop from '../models/Crop.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * POST /api/analytics/export/excel
@@ -222,6 +227,10 @@ export const exportToPDF = async (req, res) => {
 
     // Создаём PDF документ
     const doc = new PDFDocument({ margin: 50, size: 'A4' });
+
+    const fontPath = path.join(__dirname, '../fonts/DejaVuSans.ttf');
+    doc.registerFont('DejaVuSans', fontPath);
+    doc.font('DejaVuSans');
 
     // Устанавливаем заголовки для скачивания
     res.setHeader('Content-Type', 'application/pdf');

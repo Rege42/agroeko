@@ -19,6 +19,8 @@ import fieldRoutes from './routes/fieldRoutes.js';
 import cropRoutes from './routes/cropRoutes.js';
 import cropRotationEntryRoutes from './routes/cropRotationEntryRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import soilAnalysisRoutes from './routes/soilAnalysisRoutes.js';
+import weatherObservationRoutes from './routes/weatherObservationRoutes.js';
 
 const app = express();
 
@@ -41,6 +43,8 @@ app.get('/api/analytics/comparison', getComparison);
 app.post('/api/analytics/report', generateReport);
 app.get('/api/analytics/forecast/yield', forecastYield);
 app.get('/api/analytics/forecast/price', forecastPrice);
+app.use('/api/soil-analyses', soilAnalysisRoutes);
+app.use('/api/weather-observations', weatherObservationRoutes);
 
 // Подключаем роуты севооборота
 app.use('/api/fields', fieldRoutes);
