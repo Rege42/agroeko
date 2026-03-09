@@ -65,6 +65,7 @@ const models = [
 const startServer = async () => {
   try {
     await connectDb();
+    await createCollections();
     await seedData();
 
     app.listen(PORT, () => {

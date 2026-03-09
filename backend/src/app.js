@@ -18,8 +18,6 @@ import exportRoutes from './routes/exportRoutes.js';
 import fieldRoutes from './routes/fieldRoutes.js';
 import cropRoutes from './routes/cropRoutes.js';
 import cropRotationEntryRoutes from './routes/cropRotationEntryRoutes.js';
-import Crop from './models/Crop.js';
-import Field from './models/Field.js';
 
 const app = express();
 
