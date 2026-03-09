@@ -18,10 +18,14 @@ import exportRoutes from './routes/exportRoutes.js';
 import fieldRoutes from './routes/fieldRoutes.js';
 import cropRoutes from './routes/cropRoutes.js';
 import cropRotationEntryRoutes from './routes/cropRotationEntryRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 
 app.use(express.json());
+
+// Подключаем роуты аутентификации
+app.use('/api/auth', authRoutes);
 
 // Подключаем роуты аналитики
 app.use('/api/analytics/sales', saleRoutes);

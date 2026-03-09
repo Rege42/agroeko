@@ -1,4 +1,3 @@
-// backend/src/config/seed-analytics.js
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import {
