@@ -4,6 +4,7 @@ import costRoutes from './routes/costRoutes.js';
 import procurementRoutes from './routes/procurementRoutes.js';
 import labourCostRoutes from './routes/labourCostRoutes.js';
 import planRoutes from './routes/planRoutes.js';
+import errorHandler from './middlewares/errorHandler.js';
 import {
   getDashboard,
   getProduction,
@@ -61,5 +62,7 @@ app.get('/api/fields', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
+app.use(errorHandler);
 
 export default app;
