@@ -9,10 +9,10 @@ const validateObjectIdValue = (value) => mongoose.Types.ObjectId.isValid(value);
 export const createCropRotationEntryValidator = [
   body('field')
     .notEmpty()
-    .withMessage('Поле "field" обязательно')
+    .withMessage('Поле field обязательно')
     .bail()
     .custom((value) => validateObjectIdValue(value))
-    .withMessage('Поле "field" должно быть корректным ObjectId')
+    .withMessage('Поле field должно быть корректным ObjectId')
     .bail()
     .custom(async (value) => {
       const field = await Field.findById(value);
@@ -24,10 +24,10 @@ export const createCropRotationEntryValidator = [
 
   body('crop')
     .notEmpty()
-    .withMessage('Поле "crop" обязательно')
+    .withMessage('Поле crop обязательно')
     .bail()
     .custom((value) => validateObjectIdValue(value))
-    .withMessage('Поле "crop" должно быть корректным ObjectId')
+    .withMessage('Поле crop должно быть корректным ObjectId')
     .bail()
     .custom(async (value) => {
       const crop = await Crop.findById(value);
@@ -39,55 +39,55 @@ export const createCropRotationEntryValidator = [
 
   body('seasonYear')
     .notEmpty()
-    .withMessage('Поле "seasonYear" обязательно')
+    .withMessage('Поле seasonYear обязательно')
     .bail()
     .isInt({ min: 2000, max: 2100 })
-    .withMessage('Поле "seasonYear" должно быть целым числом в диапазоне от 2000 до 2100'),
+    .withMessage('Поле seasonYear должно быть целым числом в диапазоне от 2000 до 2100'),
 
   body('sowingDate')
     .optional({ nullable: true })
     .isISO8601()
-    .withMessage('Поле "sowingDate" должно содержать корректную дату в формате ISO 8601')
+    .withMessage('Поле sowingDate должно содержать корректную дату в формате ISO 8601')
     .toDate(),
 
   body('harvestDate')
     .optional({ nullable: true })
     .isISO8601()
-    .withMessage('Поле "harvestDate" должно содержать корректную дату в формате ISO 8601')
+    .withMessage('Поле harvestDate должно содержать корректную дату в формате ISO 8601')
     .toDate(),
 
   body('predictedYield')
     .optional()
     .isFloat({ min: 0 })
-    .withMessage('Поле "predictedYield" должно быть числом, большим или равным 0'),
+    .withMessage('Поле predictedYield должно быть числом, большим или равным 0'),
 
   body('finalYield')
     .optional()
     .isFloat({ min: 0 })
-    .withMessage('Поле "finalYield" должно быть числом, большим или равным 0'),
+    .withMessage('Поле finalYield должно быть числом, большим или равным 0'),
 
   body('yieldUnit')
     .optional()
     .isString()
-    .withMessage('Поле "yieldUnit" должно быть строкой')
+    .withMessage('Поле yieldUnit должно быть строкой')
     .bail()
     .trim()
     .isLength({ max: 20 })
-    .withMessage('Длина поля "yieldUnit" не должна превышать 20 символов'),
+    .withMessage('Длина поля yieldUnit не должна превышать 20 символов'),
 
   body('seasonStatus')
     .optional()
     .isIn(SEASON_STATUSES)
-    .withMessage(`Поле "seasonStatus" должно иметь одно из значений: ${SEASON_STATUSES.join(', ')}`),
+    .withMessage(`Поле seasonStatus должно иметь одно из значений: ${SEASON_STATUSES.join(', ')}`),
 
   body('notes')
     .optional()
     .isString()
-    .withMessage('Поле "notes" должно быть строкой')
+    .withMessage('Поле notes должно быть строкой')
     .bail()
     .trim()
     .isLength({ max: 3000 })
-    .withMessage('Длина поля "notes" не должна превышать 3000 символов'),
+    .withMessage('Длина поля notes не должна превышать 3000 символов'),
 
   body().custom(async (value) => {
     if (value.sowingDate && value.harvestDate) {
@@ -149,7 +149,7 @@ export const updateCropRotationEntryValidator = [
   body('field')
     .optional()
     .custom((value) => validateObjectIdValue(value))
-    .withMessage('Поле "field" должно быть корректным ObjectId')
+    .withMessage('Поле field должно быть корректным ObjectId')
     .bail()
     .custom(async (value) => {
       const field = await Field.findById(value);
@@ -175,52 +175,52 @@ export const updateCropRotationEntryValidator = [
   body('seasonYear')
     .optional()
     .isInt({ min: 2000, max: 2100 })
-    .withMessage('Поле "seasonYear" должно быть целым числом в диапазоне от 2000 до 2100'),
+    .withMessage('Поле seasonYear должно быть целым числом в диапазоне от 2000 до 2100'),
 
   body('sowingDate')
     .optional({ nullable: true })
     .isISO8601()
-    .withMessage('Поле "sowingDate" должно содержать корректную дату в формате ISO 8601')
+    .withMessage('Поле sowingDate должно содержать корректную дату в формате ISO 8601')
     .toDate(),
 
   body('harvestDate')
     .optional({ nullable: true })
     .isISO8601()
-    .withMessage('Поле "harvestDate" должно содержать корректную дату в формате ISO 8601')
+    .withMessage('Поле harvestDate должно содержать корректную дату в формате ISO 8601')
     .toDate(),
 
   body('predictedYield')
     .optional()
     .isFloat({ min: 0 })
-    .withMessage('Поле "predictedYield" должно быть числом, большим или равным 0'),
+    .withMessage('Поле predictedYield должно быть числом, большим или равным 0'),
 
   body('finalYield')
     .optional()
     .isFloat({ min: 0 })
-    .withMessage('Поле "finalYield" должно быть числом, большим или равным 0'),
+    .withMessage('Поле finalYield должно быть числом, большим или равным 0'),
 
   body('yieldUnit')
     .optional()
     .isString()
-    .withMessage('Поле "yieldUnit" должно быть строкой')
+    .withMessage('Поле yieldUnit должно быть строкой')
     .bail()
     .trim()
     .isLength({ max: 20 })
-    .withMessage('Длина поля "yieldUnit" не должна превышать 20 символов'),
+    .withMessage('Длина поля yieldUnit не должна превышать 20 символов'),
 
   body('seasonStatus')
     .optional()
     .isIn(SEASON_STATUSES)
-    .withMessage(`Поле "seasonStatus" должно иметь одно из значений: ${SEASON_STATUSES.join(', ')}`),
+    .withMessage(`Поле seasonStatus должно иметь одно из значений: ${SEASON_STATUSES.join(', ')}`),
 
   body('notes')
     .optional()
     .isString()
-    .withMessage('Поле "notes" должно быть строкой')
+    .withMessage('Поле notes должно быть строкой')
     .bail()
     .trim()
     .isLength({ max: 3000 })
-    .withMessage('Длина поля "notes" не должна превышать 3000 символов'),
+    .withMessage('Длина поля notes не должна превышать 3000 символов'),
 
   body().custom(async (value, { req }) => {
     const currentEntry = await CropRotationEntry.findById(req.params.id);
@@ -297,30 +297,30 @@ export const listCropRotationEntriesValidator = [
   query('page')
     .optional()
     .isInt({ min: 1 })
-    .withMessage('Параметр "page" должен быть целым числом больше 0'),
+    .withMessage('Параметр page должен быть целым числом больше 0'),
 
   query('limit')
     .optional()
     .isInt({ min: 1, max: 100 })
-    .withMessage('Параметр "limit" должен быть целым числом от 1 до 100'),
+    .withMessage('Параметр limit должен быть целым числом от 1 до 100'),
 
   query('field')
     .optional()
     .custom((value) => validateObjectIdValue(value))
-    .withMessage('Параметр "field" должен быть корректным ObjectId'),
+    .withMessage('Параметр field должен быть корректным ObjectId'),
 
   query('crop')
     .optional()
     .custom((value) => validateObjectIdValue(value))
-    .withMessage('Параметр "crop" должен быть корректным ObjectId'),
+    .withMessage('Параметр crop должен быть корректным ObjectId'),
 
   query('seasonYear')
     .optional()
     .isInt({ min: 2000, max: 2100 })
-    .withMessage('Параметр "seasonYear" должен быть целым числом в диапазоне от 2000 до 2100'),
+    .withMessage('Параметр seasonYear должен быть целым числом в диапазоне от 2000 до 2100'),
 
   query('seasonStatus')
     .optional()
     .isIn(SEASON_STATUSES)
-    .withMessage(`Параметр "seasonStatus" должен иметь одно из значений: ${SEASON_STATUSES.join(', ')}`),
+    .withMessage(`Параметр seasonStatus должен иметь одно из значений: ${SEASON_STATUSES.join(', ')}`),
 ];

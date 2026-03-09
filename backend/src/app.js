@@ -15,6 +15,9 @@ import {
   forecastPrice,
 } from './controllers/analyticsController.js';
 import exportRoutes from './routes/exportRoutes.js';
+import fieldRoutes from './routes/fieldRoutes.js';
+import cropRoutes from './routes/cropRoutes.js';
+import cropRotationEntryRoutes from './routes/cropRotationEntryRoutes.js';
 import Crop from './models/Crop.js';
 import Field from './models/Field.js';
 
@@ -37,30 +40,17 @@ app.post('/api/analytics/report', generateReport);
 app.get('/api/analytics/forecast/yield', forecastYield);
 app.get('/api/analytics/forecast/price', forecastPrice);
 
+// Подключаем роуты севооборота
+app.use('/api/fields', fieldRoutes);
+app.use('/api/crops', cropRoutes);
+app.use('/api/crop-rotation-entries', cropRotationEntryRoutes);
+
 app.get('/health', (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Server is running',
     timestamp: new Date().toISOString(),
   });
-});
-
-app.get('/api/crops', async (req, res) => {
-  try {
-    const crops = await Crop.find().select('name _id');
-    res.json({ success: true, data: crops });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-app.get('/api/fields', async (req, res) => {
-  try {
-    const fields = await Field.find().select('name _id');
-    res.json({ success: true, data: fields });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
 });
 
 app.use(errorHandler);
