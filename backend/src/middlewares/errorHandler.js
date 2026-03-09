@@ -1,5 +1,12 @@
+import { logger } from '../logger/logger.js';
+
 const errorHandler = (err, req, res, next) => {
-  console.error(err);
+  logger.error({
+    message: err.message,
+    stack: err.stack,
+    url: req.originalUrl,
+    method: req.method,
+  });
 
   if (err.name === 'CastError') {
     return res.status(400).json({

@@ -9,3 +9,6 @@ node_modules/
 
 # debug-scripts
 backend\src\seed-script.js
+
+# logs
+logs/
