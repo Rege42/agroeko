@@ -54,7 +54,7 @@ export default {
         { title: 'История посевов', path: '/crop-rotation/history' },
         { title: 'Добавить поле', path: '/crop-rotation/fields' },
         { title: 'Совместимость культур', path: '/crop-rotation/compatibility' },
-        { title: 'Агротехнологический план', path: '/crop-rotation/agroplan' },
+        { title: 'Агротехнологический план', path: '/crop-rotation/agro-plans' },
       ],
       },
       {

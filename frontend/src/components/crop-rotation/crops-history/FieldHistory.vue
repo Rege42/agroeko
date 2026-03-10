@@ -110,7 +110,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { fieldApi, CropsRotationApi } from "@/services/api";
+import { fieldApi, cropsRotationApi } from "@/services/api";
 
 export default {
   name: "FieldHistory",
@@ -198,7 +198,7 @@ export default {
     };
 
     const loadHistory = async () => {
-      const payload = await CropsRotationApi.getAll({
+      const payload = await cropsRotationApi.getAll({
         field: fieldId,
         sortBy: "seasonYear",
         sortOrder: "desc",
@@ -240,7 +240,7 @@ export default {
       deletingId.value = entryId;
 
       try {
-        await CropsRotationApi.delete(entryId);
+        await cropsRotationApi.delete(entryId);
         historyEntries.value = historyEntries.value.filter(
           (item) => getEntryId(item) !== entryId,
         );

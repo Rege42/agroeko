@@ -149,7 +149,7 @@
 <script>
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { cropApi, CropsRotationApi  } from "@/services/api";
+import { cropApi, cropsRotationApi  } from "@/services/api";
 
 export default {
   name: "AddCropsHistoryForm",
@@ -256,7 +256,7 @@ export default {
 
     const loadEntry = async () => {
       if (!isEditMode.value) return;
-      const payload = await CropsRotationApi.getById(entryId.value);
+      const payload = await cropsRotationApi.getById(entryId.value);
       const entry = normalizeEntityResponse(payload);
       mapEntryToForm(entry);
     };
@@ -295,9 +295,9 @@ export default {
         const payload = buildPayload();
 
         if (isEditMode.value) {
-          await CropsRotationApi.update(entryId.value, payload);
+          await cropsRotationApi.update(entryId.value, payload);
         } else {
-          await CropsRotationApi.create(payload);
+          await cropsRotationApi.create(payload);
         }
 
         emit("saved");
