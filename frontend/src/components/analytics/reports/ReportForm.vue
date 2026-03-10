@@ -133,17 +133,16 @@ export default {
     });
 
     // Загрузка списка полей
-    const loadFields = async () => {
-      try {
-        const response = await api.get('/fields'); // нужен эндпоинт для полей
-        fields.value = response.data.data;
-        // По умолчанию выбираем все поля
-        selectedFields.value = fields.value.map(f => f._id);
-        selectAllFields.value = true;
-      } catch (error) {
-        console.error('Ошибка загрузки полей:', error);
-      }
-    };
+  const loadFields = async () => {
+    try {
+      const response = await api.get('/fields');
+      fields.value = response.data.items;   // было response.data.data
+      selectedFields.value = fields.value.map(f => f._id);
+      selectAllFields.value = true;
+    } catch (error) {
+      console.error('Ошибка загрузки полей:', error);
+    }
+};
 
     // Выбрать/снять все поля
     const toggleAllFields = () => {
