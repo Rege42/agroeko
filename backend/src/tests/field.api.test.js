@@ -10,7 +10,7 @@ describe('API /api/fields', () => {
         area: 125.5,
         soilType: 'chernozem',
         location: 'Северный участок',
-        moistureLevel: 'medium',
+        nutrientsLevel: 'medium',
         cadastralNumber: 'RU-TEST-101',
         notes: 'Тестовое поле',
       };
@@ -55,21 +55,21 @@ describe('API /api/fields', () => {
           name: 'Поле-A',
           area: 100,
           soilType: 'chernozem',
-          moistureLevel: 'medium',
+          nutrientsLevel: 'medium',
           isActive: true,
         },
         {
           name: 'Поле-B',
           area: 120,
           soilType: 'chernozem',
-          moistureLevel: 'high',
+          nutrientsLevel: 'high',
           isActive: true,
         },
         {
           name: 'Поле-C',
           area: 90,
           soilType: 'sandy',
-          moistureLevel: 'low',
+          nutrientsLevel: 'low',
           isActive: false,
         },
       ]);

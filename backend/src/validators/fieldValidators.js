@@ -7,13 +7,13 @@ import {
 } from './commonValidators.js';
 
 const SOIL_TYPES = ['chernozem', 'sandy', 'clay', 'loam', 'peat', 'saline', 'other'];
-const MOISTURE_LEVELS = ['low', 'medium', 'high'];
+const NUTRIENTS_LEVELS = ['low', 'medium', 'high'];
 
 export const createFieldValidator = [
   requiredStringField('name', 2, 120),
   positiveNumberField('area'),
   enumField('soilType', SOIL_TYPES, true),
-  enumField('moistureLevel', MOISTURE_LEVELS, false),
+  enumField('nutrientsLevel', NUTRIENTS_LEVELS, false),
   optionalStringField('location', 255),
   optionalStringField('cadastralNumber', 64),
   optionalStringField('notes', 2000),
@@ -39,10 +39,10 @@ export const updateFieldValidator = [
     .isIn(SOIL_TYPES)
     .withMessage(`Поле soilType должно иметь одно из значений: ${SOIL_TYPES.join(', ')}`),
 
-  body('moistureLevel')
+  body('nutrientsLevel')
     .optional()
-    .isIn(MOISTURE_LEVELS)
-    .withMessage(`Поле moistureLevel должно иметь одно из значений: ${MOISTURE_LEVELS.join(', ')}`),
+    .isIn(NUTRIENTS_LEVELS)
+    .withMessage(`Поле nutrientsLevel должно иметь одно из значений: ${NUTRIENTS_LEVELS.join(', ')}`),
 
   optionalStringField('location', 255),
   optionalStringField('cadastralNumber', 64),

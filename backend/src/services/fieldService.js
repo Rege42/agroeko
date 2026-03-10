@@ -1,16 +1,16 @@
-import { Field } from '../models/index.js';
-import AppError from '../utils/AppError.js';
-import { buildPagination } from '../utils/buildPagination.js';
+import { Field } from "../models/index.js";
+import AppError from "../utils/AppError.js";
+import { buildPagination } from "../utils/buildPagination.js";
 
 class FieldService {
   async createField(data) {
     const existingField = await Field.findOne({ name: data.name.trim() });
 
     if (existingField) {
-      throw new AppError('Поле с таким названием уже существует', 409, [
+      throw new AppError("Поле с таким названием уже существует", 409, [
         {
-          field: 'name',
-          message: 'Название поля должно быть уникальным',
+          field: "name",
+          message: "Название поля должно быть уникальным",
         },
       ]);
     }
@@ -33,14 +33,18 @@ class FieldService {
     }
 
     if (query.isActive !== undefined) {
-      filter.isActive = query.isActive === 'true';
+      filter.isActive = query.isActive === "true";
+    }
+
+    if (query.search && query.search.trim()) {
+      filter.name = {
+        $regex: query.search.trim(),
+        $options: "i",
+      };
     }
 
     const [items, total] = await Promise.all([
-      Field.find(filter)
-        .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(limit),
+      Field.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
       Field.countDocuments(filter),
     ]);
 
@@ -59,10 +63,10 @@ class FieldService {
     const field = await Field.findById(id);
 
     if (!field) {
-      throw new AppError('Поле не найдено', 404, [
+      throw new AppError("Поле не найдено", 404, [
         {
-          field: 'id',
-          message: 'Поле с указанным идентификатором не существует',
+          field: "id",
+          message: "Поле с указанным идентификатором не существует",
         },
       ]);
     }
@@ -74,10 +78,10 @@ class FieldService {
     const field = await Field.findById(id);
 
     if (!field) {
-      throw new AppError('Поле не найдено', 404, [
+      throw new AppError("Поле не найдено", 404, [
         {
-          field: 'id',
-          message: 'Поле с указанным идентификатором не существует',
+          field: "id",
+          message: "Поле с указанным идентификатором не существует",
         },
       ]);
     }
@@ -89,10 +93,10 @@ class FieldService {
       });
 
       if (existingField) {
-        throw new AppError('Поле с таким названием уже существует', 409, [
+        throw new AppError("Поле с таким названием уже существует", 409, [
           {
-            field: 'name',
-            message: 'Название поля должно быть уникальным',
+            field: "name",
+            message: "Название поля должно быть уникальным",
           },
         ]);
       }
@@ -112,10 +116,10 @@ class FieldService {
     const field = await Field.findById(id);
 
     if (!field) {
-      throw new AppError('Поле не найдено', 404, [
+      throw new AppError("Поле не найдено", 404, [
         {
-          field: 'id',
-          message: 'Поле с указанным идентификатором не существует',
+          field: "id",
+          message: "Поле с указанным идентификатором не существует",
         },
       ]);
     }
@@ -123,7 +127,7 @@ class FieldService {
     await field.deleteOne();
 
     return {
-      message: 'Поле успешно удалено',
+      message: "Поле успешно удалено",
     };
   }
 }

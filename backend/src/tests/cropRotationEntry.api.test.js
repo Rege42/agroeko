@@ -9,7 +9,7 @@ describe('API /api/crop-rotation-entries', () => {
         name: 'Поле-201',
         area: 150,
         soilType: 'chernozem',
-        moistureLevel: 'medium',
+        nutrientsLevel: 'medium',
       });
 
       const crop = await Crop.create({
@@ -56,7 +56,7 @@ describe('API /api/crop-rotation-entries', () => {
         name: 'Поле-202',
         area: 100,
         soilType: 'sandy',
-        moistureLevel: 'medium',
+        nutrientsLevel: 'medium',
       });
 
       const crop = await Crop.create({
@@ -86,7 +86,7 @@ describe('API /api/crop-rotation-entries', () => {
         name: 'Поле-203',
         area: 80,
         soilType: 'chernozem',
-        moistureLevel: 'medium',
+        nutrientsLevel: 'medium',
       });
 
       const crop1 = await Crop.create({
