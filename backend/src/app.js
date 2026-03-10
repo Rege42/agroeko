@@ -1,10 +1,15 @@
-import express from 'express';
-import saleRoutes from './routes/saleRoutes.js';
-import costRoutes from './routes/costRoutes.js';
-import procurementRoutes from './routes/procurementRoutes.js';
-import labourCostRoutes from './routes/labourCostRoutes.js';
-import planRoutes from './routes/planRoutes.js';
-import errorHandler from './middlewares/errorHandler.js';
+import express from "express";
+import morgan from "morgan";
+import {
+  requestLoggerConsole,
+  requestLoggerFile,
+} from "./middlewares/requestLogger.js";
+import saleRoutes from "./routes/saleRoutes.js";
+import costRoutes from "./routes/costRoutes.js";
+import procurementRoutes from "./routes/procurementRoutes.js";
+import labourCostRoutes from "./routes/labourCostRoutes.js";
+import planRoutes from "./routes/planRoutes.js";
+import errorHandler from "./middlewares/errorHandler.js";
 import {
   getDashboard,
   getProduction,
@@ -26,8 +31,12 @@ const app = express();
 
 app.use(express.json());
 
+// Логирование запросов
+app.use(requestLoggerConsole);
+app.use(requestLoggerFile);
+
 // Подключаем роуты аутентификации
-app.use('/api/auth', authRoutes);
+app.use("/api/auth", authRoutes);
 
 // Подключаем роуты аналитики
 app.use('/api/analytics/sales', saleRoutes);
@@ -47,18 +56,19 @@ app.use('/api/soil-analyses', soilAnalysisRoutes);
 app.use('/api/weather-observations', weatherObservationRoutes);
 
 // Подключаем роуты севооборота
-app.use('/api/fields', fieldRoutes);
-app.use('/api/crops', cropRoutes);
-app.use('/api/crop-rotation-entries', cropRotationEntryRoutes);
+app.use("/api/fields", fieldRoutes);
+app.use("/api/crops", cropRoutes);
+app.use("/api/crop-rotation-entries", cropRotationEntryRoutes);
 
-app.get('/health', (req, res) => {
+app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'Server is running',
+    message: "Server is running",
     timestamp: new Date().toISOString(),
   });
 });
 
+// Обработка ошибок
 app.use(errorHandler);
 
 export default app;

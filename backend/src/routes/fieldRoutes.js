@@ -13,12 +13,11 @@ import {
 
 const router = express.Router();
 
-router.use(authenticateJWT);
-
 router.get(
   "/",
   listFieldsValidator,
   validateRequest,
+  authenticateJWT,
   authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER),
   fieldController.getAll,
 );

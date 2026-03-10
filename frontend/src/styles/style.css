@@ -139,6 +139,25 @@ body {
   animation: slideIn 0.2s ease-out;
 }
 
+.form-error {
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  border: 1px solid #d32f2f;
+  border-radius: 6px;
+  background-color: #fdecea;
+  color: #b71c1c;
+}
+
+.input-error-text {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #c62828;
+}
+
+.input-error-border {
+  border-color: #c62828 !important;
+}
+
 .nav-icon-container {
   display: block;
   cursor: pointer;

@@ -108,20 +108,20 @@
       </div>
 
       <div class="form-group">
-        <label for="nutrients">Уровень питательных веществ:</label>
+        <label for="nutrientsLevel">Уровень питательных веществ:</label>
         <select
-          id="nutrients"
-          v-model="field.nutrients"
+          id="nutrientsLevel"
+          v-model="field.nutrientsLevel"
           class="standart-input"
-          :class="{ 'input-error-border': fieldErrors.nutrients }"
-          @change="clearFieldError('nutrients')"
+          :class="{ 'input-error-border': fieldErrors.nutrientsLevel }"
+          @change="clearFieldError('nutrientsLevel')"
         >
           <option value="low">Низкий</option>
           <option value="medium">Средний</option>
           <option value="high">Высокий</option>
         </select>
-        <div v-if="fieldErrors.nutrients" class="input-error-text">
-          {{ fieldErrors.nutrients }}
+        <div v-if="fieldErrors.nutrientsLevel" class="input-error-text">
+          {{ fieldErrors.nutrientsLevel }}
         </div>
       </div>
 
@@ -184,8 +184,17 @@
       </div>
 
       <div class="form-actions">
-        <button type="submit" class="standart-button" :disabled="isSubmitting">
+        <button type="submit" class="standart-button" :disabled="isSubmitting || isDeleting">
           {{ isSubmitting ? "Сохранение..." : "Сохранить" }}
+        </button>
+
+        <button
+          type="button"
+          class="standart-button danger-button"
+          :disabled="isSubmitting || isDeleting"
+          @click="deleteField"
+        >
+          {{ isDeleting ? "Удаление..." : "Удалить" }}
         </button>
       </div>
     </form>
@@ -193,14 +202,17 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import { fieldApi } from "@/services/api";
 
 export default {
-  name: "FieldForm",
+  name: "FieldEdit",
   setup() {
     const router = useRouter();
+    const route = useRoute();
+
+    const fieldId = route.params.id;
 
     const field = ref({
       name: "",
@@ -209,7 +221,7 @@ export default {
       humidity: null,
       temperature: null,
       ph: null,
-      nutrients: "medium",
+      nutrientsLevel: "medium",
       organic: null,
       soilType: "loam",
       soilMoisture: null,
@@ -218,6 +230,7 @@ export default {
     const formError = ref("");
     const fieldErrors = ref({});
     const isSubmitting = ref(false);
+    const isDeleting = ref(false);
 
     const clearFieldError = (fieldName) => {
       if (fieldErrors.value[fieldName]) {
@@ -243,13 +256,38 @@ export default {
       fieldErrors.value = mappedErrors;
     };
 
+    const loadField = async () => {
+      formError.value = "";
+
+      try {
+        const response = await fieldApi.getById(fieldId);
+        const data = response.data;
+
+        field.value = {
+          name: data.name ?? "",
+          area: data.area ?? null,
+          precipitation: data.precipitation ?? null,
+          humidity: data.humidity ?? null,
+          temperature: data.temperature ?? null,
+          ph: data.ph ?? null,
+          nutrientsLevel: data.nutrientsLevel ?? "medium",
+          organic: data.organic ?? null,
+          soilType: data.soilType ?? "loam",
+          soilMoisture: data.soilMoisture ?? null,
+        };
+      } catch (error) {
+        const data = error.response?.data;
+        formError.value = data?.message || "Ошибка загрузки поля";
+      }
+    };
+
     const saveField = async () => {
       formError.value = "";
       fieldErrors.value = {};
       isSubmitting.value = true;
 
       try {
-        await fieldApi.create(field.value);
+        await fieldApi.update(fieldId, field.value);
         router.push("/crop-rotation/fields");
       } catch (error) {
         const data = error.response?.data;
@@ -270,13 +308,38 @@ export default {
       }
     };
 
+    const deleteField = async () => {
+      const confirmed = window.confirm("Удалить поле?");
+
+      if (!confirmed) {
+        return;
+      }
+
+      formError.value = "";
+      isDeleting.value = true;
+
+      try {
+        await fieldApi.delete(fieldId);
+        router.push("/crop-rotation/fields");
+      } catch (error) {
+        const data = error.response?.data;
+        formError.value = data?.message || "Ошибка удаления поля";
+      } finally {
+        isDeleting.value = false;
+      }
+    };
+
+    onMounted(loadField);
+
     return {
       field,
       formError,
       fieldErrors,
       isSubmitting,
+      isDeleting,
       clearFieldError,
       saveField,
+      deleteField,
     };
   },
 };

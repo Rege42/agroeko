@@ -25,7 +25,7 @@ export const seedData = async () => {
       area: 120,
       soilType: 'chernozem',
       location: 'Северный участок',
-      moistureLevel: 'medium',
+      nutrientsLevel: 'medium',
       cadastralNumber: 'RU-01-0001',
       notes: 'Тестовое поле',
     });
