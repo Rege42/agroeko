@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getCropCompatibilityMatrixController } from "../controllers/cropCompatibilityController.js";
+import { getCropCompatibilityMatrixController, getCropSelection } from "../controllers/cropCompatibilityController.js";
 import { authenticateJWT } from "../middlewares/authenticateJWT.js";
 import { authorizeRoles } from "../middlewares/authorizeRoles.js";
 import { ROLES } from "../constants/roles.js";
@@ -11,6 +11,13 @@ router.get(
   authenticateJWT,
   authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER),
   getCropCompatibilityMatrixController,
+);
+
+router.get(
+  "/crop-selection/:fieldId",
+  authenticateJWT,
+  authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER),
+  getCropSelection,
 );
 
 export default router;

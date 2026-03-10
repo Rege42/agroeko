@@ -57,10 +57,11 @@ const cropSchema = new mongoose.Schema(
       type: String,
       maxlength: 2000,
     },
-    rotationGroup: {
+    cropRotationGroup: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "CropRotationGroup",
       required: false,
+      index: true,
     },
   },
   {

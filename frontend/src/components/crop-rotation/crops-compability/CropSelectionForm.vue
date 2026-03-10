@@ -79,19 +79,6 @@
           </div>
         </div>
 
-        <div class="standart-form-group">
-          <label for="budget">Бюджет:</label>
-          <input
-            id="budget"
-            v-model.number="form.budget"
-            type="number"
-            class="standart-input"
-            step="0.01"
-            min="0"
-            placeholder="Введите бюджет"
-          />
-        </div>
-
         <div v-if="formError" class="form-error">
           {{ formError }}
         </div>

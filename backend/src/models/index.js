@@ -15,6 +15,7 @@ import Cost from './Cost.js';
 import Procurement from './Procurement.js';
 import LabourCost from './LabourCost.js';
 import Plan from './Plan.js';
+import CropRotationGroup from './CropRotationGroup.js';
 
 export {
   Field,
@@ -34,4 +35,5 @@ export {
   Procurement,
   LabourCost,
   Plan,
+  CropRotationGroup,
 };

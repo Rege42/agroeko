@@ -87,6 +87,11 @@ export const getCropCompatibilityMatrix = async () => {
   return response.data;
 };
 
+export const getCropSelection = async (fieldId) => {
+  const { data } = await api.get(`/crop-compatibility/crop-selection/${fieldId}`);
+  return data;
+};
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
 

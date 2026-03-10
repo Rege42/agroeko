@@ -155,11 +155,13 @@ const routes = [
     path: "/crop-rotation/compatibility",
     name: "CropsCompatibility",
     component: CropsCompatibility,
+    meta: { requiresAuth: true },
   },
   {
-    path: "/crop-rotation/crop-selection/new",
-    name: "CropSelectionCreate",
-    component: CropSelectionForm,
+    path: "/crop-rotation/crop-selection/:fieldId?",
+    name: "CropSelection",
+    component: CropSelection,
+    meta: { requiresAuth: true },
   },
 
   {
