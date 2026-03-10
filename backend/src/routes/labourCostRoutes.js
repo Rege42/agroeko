@@ -6,16 +6,17 @@ import {
   updateLabourCost,
   deleteLabourCost,
 } from '../controllers/labourCostController.js';
+import { authenticateJWT } from '../middlewares/authenticateJWT.js';
 
 const router = express.Router();
 
 router.route('/')
-  .post(createLabourCost)
-  .get(getAllLabourCosts);
+  .post(authenticateJWT, createLabourCost)
+  .get(authenticateJWT, getAllLabourCosts);
 
 router.route('/:id')
-  .get(getLabourCostById)
-  .put(updateLabourCost)
-  .delete(deleteLabourCost);
+  .get(authenticateJWT, getLabourCostById)
+  .put(authenticateJWT, updateLabourCost)
+  .delete(authenticateJWT, deleteLabourCost);
 
 export default router;

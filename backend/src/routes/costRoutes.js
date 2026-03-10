@@ -6,16 +6,17 @@ import {
   updateCost,
   deleteCost,
 } from '../controllers/costController.js';
+import { authenticateJWT } from '../middlewares/authenticateJWT.js';
 
 const router = express.Router();
 
 router.route('/')
-  .post(createCost)
-  .get(getAllCosts);
+  .post(authenticateJWT, createCost)
+  .get(authenticateJWT, getAllCosts);
 
 router.route('/:id')
-  .get(getCostById)
-  .put(updateCost)
-  .delete(deleteCost);
+  .get(authenticateJWT, getCostById)
+  .put(authenticateJWT, updateCost)
+  .delete(authenticateJWT, deleteCost);
 
 export default router;

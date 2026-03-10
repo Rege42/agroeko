@@ -6,16 +6,17 @@ import {
   updatePlan,
   deletePlan,
 } from '../controllers/planController.js';
+import { authenticateJWT } from '../middlewares/authenticateJWT.js';
 
 const router = express.Router();
 
 router.route('/')
-  .post(createPlan)
-  .get(getAllPlans);
+  .post(authenticateJWT, createPlan)
+  .get(authenticateJWT, getAllPlans);
 
 router.route('/:id')
-  .get(getPlanById)
-  .put(updatePlan)
-  .delete(deletePlan);
+  .get(authenticateJWT, getPlanById)
+  .put(authenticateJWT, updatePlan)
+  .delete(authenticateJWT, deletePlan);
 
 export default router;

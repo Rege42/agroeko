@@ -1,15 +1,16 @@
 import express from 'express';
 import weatherObservationController from '../controllers/weatherObservationController.js';
+import { authenticateJWT } from '../middlewares/authenticateJWT.js';
 
 const router = express.Router();
 
 router.route('/')
-  .post(weatherObservationController.create)
-  .get(weatherObservationController.getAll);
+  .post(authenticateJWT, weatherObservationController.create)
+  .get(authenticateJWT, weatherObservationController.getAll);
 
 router.route('/:id')
-  .get(weatherObservationController.getById)
-  .put(weatherObservationController.update)
-  .delete(weatherObservationController.delete);
+  .get(authenticateJWT, weatherObservationController.getById)
+  .put(authenticateJWT, weatherObservationController.update)
+  .delete(authenticateJWT, weatherObservationController.delete);
 
 export default router;
