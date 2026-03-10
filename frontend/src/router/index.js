@@ -21,7 +21,7 @@ import LoginView from "../components/views/LoginView.vue";
 import { isAuthenticated } from "../services/authService";
 
 const routes = [
-  {
+    {
     path: "/",
     redirect: "/forecast",
   },
@@ -29,29 +29,47 @@ const routes = [
     path: "/forecast",
     name: "Forecasting",
     component: Forecasting,
+    meta: { requiresAuth: true },
   },
   {
     path: "/forecast/yield",
     name: "ForecastForm",
     component: ForecastForm,
+    meta: { requiresAuth: true },
   },
   {
     path: "/forecast/yield/result",
     name: "ForecastResult",
     component: ForecastResult,
+    meta: { requiresAuth: true },
   },
-  { path: "/reports", name: "Reports", component: Reports },
-  { path: "/reports/new", name: "ReportForm", component: ReportForm },
-  { path: "/reports/result", name: "ReportResult", component: ReportResult },
+  { 
+    path: "/reports", 
+    name: "Reports", 
+    component: Reports, 
+    meta: { requiresAuth: true } 
+  },
+  { path: "/reports/new",
+    name: "ReportForm", 
+    component: ReportForm, 
+    meta: { requiresAuth: true } 
+  },
+  { path: "/reports/result", 
+    name: "ReportResult", 
+    component: ReportResult, 
+    meta: { requiresAuth: true } 
+  },
   {
     path: "/indicators",
     name: "Indicators",
     component: Indicators,
+    meta: { requiresAuth: true },
   },
   {
     path: "/indicators/:id",
     name: "IndicatorShowcase",
     component: IndicatorShowcase,
+    meta: { requiresAuth: true },
   },
   {
     path: "/crop-rotation/fields",
@@ -138,7 +156,6 @@ const routes = [
     component: LoginView,
     meta: { hideSidebar: true },
   },
-  // Можно добавить другие прогнозы
 ];
 
 const router = createRouter({

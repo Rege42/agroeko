@@ -6,16 +6,19 @@ import {
   updateSale,
   deleteSale,
 } from '../controllers/saleController.js';
+import { authenticateJWT } from '../middlewares/authenticateJWT.js';
+import { authorizeRoles } from '../middlewares/authorizeRoles.js';
+import { ROLES } from '../constants/roles.js';
 
 const router = express.Router();
 
 router.route('/')
-  .post(createSale)
-  .get(getAllSales);
+  .post(authenticateJWT, authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER), createSale)
+  .get(authenticateJWT, authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER), getAllSales);
 
 router.route('/:id')
-  .get(getSaleById)
-  .put(updateSale)
-  .delete(deleteSale);
+  .get(authenticateJWT, authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER), getSaleById)
+  .put(authenticateJWT, authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER), updateSale)
+  .delete(authenticateJWT, authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER), deleteSale);
 
 export default router;
