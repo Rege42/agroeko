@@ -21,4 +21,4 @@ router.route('/:id')
   .put(authenticateJWT, authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER), updateLabourCost)
   .delete(authenticateJWT, authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER), deleteLabourCost);
 
-export default router;ы
+export default router;

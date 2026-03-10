@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const cropSchema = new mongoose.Schema(
   {
@@ -12,7 +12,15 @@ const cropSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ['grain', 'legume', 'oilseed', 'technical', 'vegetable', 'forage', 'other'],
+      enum: [
+        "grain",
+        "legume",
+        "oilseed",
+        "technical",
+        "vegetable",
+        "forage",
+        "other",
+      ],
     },
     growthPeriodDays: {
       type: Number,
@@ -26,14 +34,14 @@ const cropSchema = new mongoose.Schema(
     },
     yieldUnit: {
       type: String,
-      default: 't/ha',
+      default: "t/ha",
       trim: true,
       maxlength: 20,
     },
     suitableSoilTypes: {
       type: [String],
       default: [],
-      enum: ['chernozem', 'sandy', 'clay', 'loam', 'peat', 'saline', 'other'],
+      enum: ["chernozem", "sandy", "clay", "loam", "peat", "saline", "other"],
     },
     minRecommendedPh: {
       type: Number,
@@ -49,13 +57,18 @@ const cropSchema = new mongoose.Schema(
       type: String,
       maxlength: 2000,
     },
+    rotationGroup: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CropRotationGroup",
+      required: false,
+    },
   },
   {
     timestamps: true,
     versionKey: false,
-  }
+  },
 );
 
 cropSchema.index({ name: 1 }, { unique: true });
 
-export default mongoose.model('Crop', cropSchema);
+export default mongoose.model("Crop", cropSchema);

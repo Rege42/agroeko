@@ -152,6 +152,17 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: "/crop-rotation/compatibility",
+    name: "CropsCompatibility",
+    component: CropsCompatibility,
+  },
+  {
+    path: "/crop-rotation/crop-selection/new",
+    name: "CropSelectionCreate",
+    component: CropSelectionForm,
+  },
+
+  {
     path: "/login",
     component: LoginView,
     meta: { hideSidebar: true },

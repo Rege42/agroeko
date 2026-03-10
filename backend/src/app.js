@@ -26,6 +26,7 @@ import cropRotationEntryRoutes from './routes/cropRotationEntryRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import soilAnalysisRoutes from './routes/soilAnalysisRoutes.js';
 import weatherObservationRoutes from './routes/weatherObservationRoutes.js';
+import cropCompatibilityRoutes from "./routes/cropCompatibilityRoutes.js";
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use('/api/weather-observations', weatherObservationRoutes);
 app.use("/api/fields", fieldRoutes);
 app.use("/api/crops", cropRoutes);
 app.use("/api/crop-rotation-entries", cropRotationEntryRoutes);
+app.use("/api/crop-compatibility", cropCompatibilityRoutes);
 
 app.get("/health", (req, res) => {
   res.status(200).json({

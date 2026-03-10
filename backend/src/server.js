@@ -23,6 +23,7 @@ import {
 } from './models/index.js';
 import { seedUsers } from './config/seedUsers.js';
 import seedAnalytics from './config/seed-analytics.js';
+import { seedCropCompability } from './config/SeedCropCompatibility.js';
 
 dotenv.config();
 
@@ -71,6 +72,7 @@ const startServer = async () => {
     await seedData();
     await seedUsers();
     await seedAnalytics();
+    await seedCropCompability();
 
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);
