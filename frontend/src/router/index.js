@@ -102,15 +102,41 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: "/crop-rotation/history/:fieldId",
+    name: "FieldHistory",
+    component: FieldHistory,
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: "add",
+        name: "CropRotationAdd",
+        component: AddCropsHistoryForm,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "edit/:entryId",
+        name: "CropRotationEdit",
+        component: AddCropsHistoryForm,
+        meta: { requiresAuth: true },
+      },
+    ],
+  },
+  {
     path: "/crop-rotation/history/:fieldId/add",
-    name: "AddCropsHistoryForm",
+    name: "CropRotationAdd",
+    component: AddCropsHistoryForm,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/crop-rotation/history/:fieldId/edit/:entryId",
+    name: "CropRotationEdit",
     component: AddCropsHistoryForm,
     meta: { requiresAuth: true },
   },
   {
     path: "/login",
     component: LoginView,
-    meta: { hideSidebar: true},
+    meta: { hideSidebar: true },
   },
   // Можно добавить другие прогнозы
 ];

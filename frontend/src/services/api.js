@@ -43,6 +43,45 @@ export const fieldApi = {
   },
 };
 
+export const CropsRotationApi = {
+  async getAll(params = {}) {
+    const response = await api.get("/crop-rotation-entries", { params });
+    return response.data;
+  },
+
+  async getById(id) {
+    const response = await api.get(`/crop-rotation-entries/${id}`);
+    return response.data;
+  },
+
+  async create(payload) {
+    const response = await api.post('/crop-rotation-entries', payload);
+    return response.data;
+  },
+
+  async update(id, payload) {
+    const response = await api.patch(`/crop-rotation-entries/${id}`, payload);
+    return response.data;
+  },
+
+  async delete(id) {
+    const response = await api.delete(`/crop-rotation-entries/${id}`);
+    return response.data;
+  },
+};
+
+export const cropApi = {
+  async getAll(params = {}) {
+    const response = await api.get("/crops", { params });
+    return response.data;
+  },
+
+  async getById(id) {
+    const response = await api.get(`/crops/${id}`);
+    return response.data;
+  },
+};
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
 
