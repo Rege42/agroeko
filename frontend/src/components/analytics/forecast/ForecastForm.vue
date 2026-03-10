@@ -108,13 +108,13 @@ export default {
 
     // Загрузить список культур при монтировании
     onMounted(async () => {
-      try {
-        const response = await api.get('/crops'); // нужен эндпоинт для получения культур
-        crops.value = response.data.data;
-      } catch (error) {
-        console.error('Ошибка загрузки культур:', error);
-      }
-    });
+    try {
+      const response = await api.get('/crops');
+      crops.value = response.data.items;
+    } catch (error) {
+      console.error('Ошибка загрузки культур:', error);
+   }
+});
 
     const submitForm = () => {
       // Переходим на страницу результата, передавая параметры через query

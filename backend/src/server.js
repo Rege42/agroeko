@@ -21,6 +21,8 @@ import {
   LabourCost,
   Plan,
 } from './models/index.js';
+import { seedUsers } from './config/seedUsers.js';
+import seedAnalytics from './config/seed-analytics.js';
 
 dotenv.config();
 
@@ -65,7 +67,10 @@ const models = [
 const startServer = async () => {
   try {
     await connectDb();
+    await createCollections();
     await seedData();
+    await seedUsers();
+    await seedAnalytics();
 
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);

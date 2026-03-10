@@ -1,10 +1,12 @@
 // backend/src/controllers/analyticsController.js
+import mongoose from 'mongoose';
 import Field from '../models/Field.js';
 import CropRotationEntry from '../models/CropRotationEntry.js';
 import Sale from '../models/Sale.js';
 import Cost from '../models/Cost.js';
 import LabourCost from '../models/LabourCost.js';
 import Plan from '../models/Plan.js';
+import Crop from '../models/Crop.js';
 
 /**
  * GET /api/analytics/dashboard
@@ -131,7 +133,8 @@ export const getProduction = async (req, res) => {
     const pipeline = [
       { $match: match },
       // Добавляем информацию о поле (нужна для площади)
-      { $lookup: {
+      {
+        $lookup: {
           from: 'fields',
           localField: 'field',
           foreignField: '_id',
@@ -140,7 +143,8 @@ export const getProduction = async (req, res) => {
       },
       { $unwind: '$fieldInfo' },
       // Группировка
-      { $group: {
+      {
+        $group: {
           _id: groupById,
           totalYield: { $sum: '$finalYield' },
           avgYield: { $avg: '$finalYield' },
@@ -153,7 +157,8 @@ export const getProduction = async (req, res) => {
     // Для culture и field добавляем lookup, чтобы получить название
     if (groupBy === 'culture' || groupBy === 'field') {
       pipeline.push(
-        { $lookup: {
+        {
+          $lookup: {
             from: groupBy === 'culture' ? 'crops' : 'fields',
             localField: '_id',
             foreignField: '_id',
@@ -161,7 +166,8 @@ export const getProduction = async (req, res) => {
           }
         },
         { $unwind: '$details' },
-        { $project: {
+        {
+          $project: {
             name: '$details.name',
             totalYield: 1,
             avgYield: 1,
@@ -212,7 +218,8 @@ export const getFinancial = async (req, res) => {
     if (type === 'both' || type === 'revenue') {
       const revenuePipeline = [
         { $match: match },
-        { $group: {
+        {
+          $group: {
             _id: null,
             totalRevenue: { $sum: '$total' },
             count: { $sum: 1 }
@@ -227,7 +234,8 @@ export const getFinancial = async (req, res) => {
     if (type === 'both' || type === 'cost') {
       const costPipeline = [
         { $match: match },
-        { $group: {
+        {
+          $group: {
             _id: null,
             totalCost: { $sum: '$totalCost' },
             count: { $sum: 1 }
@@ -362,38 +370,45 @@ export const generateReport = async (req, res) => {
   try {
     const { periodType, startDate, endDate, fields, cultures, reportType } = req.body;
 
-    // Определяем период
+    // Определяем период с явным указанием UTC, чтобы избежать проблем с часовыми поясами
     let start, end;
     if (periodType === 'custom' && startDate && endDate) {
-      start = new Date(startDate);
-      end = new Date(endDate);
+      start = new Date(startDate + 'T00:00:00.000Z');
+      end = new Date(endDate + 'T23:59:59.999Z');
     } else {
-      // Для других типов можно реализовать логику, пока заглушка
+      // Для других типов можно реализовать логику, пока заглушка (текущий месяц)
       const now = new Date();
-      start = new Date(now.getFullYear(), now.getMonth(), 1);
-      end = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+      start = new Date(Date.UTC(now.getFullYear(), now.getMonth(), 1));
+      end = new Date(Date.UTC(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999));
     }
 
     // Строим фильтры
     const fieldFilter = fields && fields.length ? { field: { $in: fields } } : {};
     const cultureFilter = cultures && cultures.length ? { crop: { $in: cultures } } : {};
 
-    // Собираем данные в зависимости от reportType
+    // === Отладка (можно удалить после проверки) ===
+    console.log('Report period (UTC):', { start, end });
+    console.log('fieldFilter:', fieldFilter);
+    console.log('cultureFilter:', cultureFilter);
+
+    // Собираем данные
     let data = {};
 
-    // Производственные показатели (урожайность по полям/культурам)
+    // 1. Производственные показатели (урожайность) – оставляем как есть
     const production = await CropRotationEntry.aggregate([
-      { $match: {
+      {
+        $match: {
           harvestDate: { $gte: start, $lte: end },
           ...fieldFilter,
           ...cultureFilter,
-        }
+        },
       },
       { $lookup: { from: 'fields', localField: 'field', foreignField: '_id', as: 'fieldInfo' } },
       { $unwind: '$fieldInfo' },
       { $lookup: { from: 'crops', localField: 'crop', foreignField: '_id', as: 'cropInfo' } },
       { $unwind: '$cropInfo' },
-      { $project: {
+      {
+        $project: {
           fieldName: '$fieldInfo.name',
           cropName: '$cropInfo.name',
           seasonYear: 1,
@@ -402,21 +417,22 @@ export const generateReport = async (req, res) => {
           finalYield: 1,
           predictedYield: 1,
           area: '$fieldInfo.area',
-        }
+        },
       },
-      { $sort: { fieldName: 1, cropName: 1 } }
+      { $sort: { fieldName: 1, cropName: 1 } },
     ]);
 
-    // Финансовые показатели
+    // 2. Финансовые показатели
     const financial = {};
 
     if (reportType !== 'technical') {
-      // Выручка
+      // Выручка – оставляем агрегацию (работает)
       const revenue = await Sale.aggregate([
         { $match: { date: { $gte: start, $lte: end }, ...cultureFilter } },
         { $lookup: { from: 'crops', localField: 'crop', foreignField: '_id', as: 'cropInfo' } },
         { $unwind: '$cropInfo' },
-        { $project: {
+        {
+          $project: {
             date: 1,
             cropName: '$cropInfo.name',
             quantity: 1,
@@ -425,35 +441,35 @@ export const generateReport = async (req, res) => {
             total: 1,
             buyer: 1,
             channel: 1,
-          }
+          },
         },
-        { $sort: { date: -1 } }
+        { $sort: { date: -1 } },
       ]);
-
-      // Затраты
-      const costs = await Cost.aggregate([
-        { $match: { date: { $gte: start, $lte: end }, ...fieldFilter, ...cultureFilter } },
-        { $lookup: { from: 'fields', localField: 'field', foreignField: '_id', as: 'fieldInfo' } },
-        { $unwind: { path: '$fieldInfo', preserveNullAndEmptyArrays: true } },
-        { $lookup: { from: 'crops', localField: 'crop', foreignField: '_id', as: 'cropInfo' } },
-        { $unwind: { path: '$cropInfo', preserveNullAndEmptyArrays: true } },
-        { $project: {
-            date: 1,
-            category: 1,
-            item: 1,
-            quantity: 1,
-            unit: 1,
-            pricePerUnit: 1,
-            totalCost: 1,
-            fieldName: '$fieldInfo.name',
-            cropName: '$cropInfo.name',
-          }
-        },
-        { $sort: { date: -1 } }
-      ]);
-
       financial.revenue = revenue;
-      financial.costs = costs;
+
+      // Затраты – используем find с populate (надёжнее)
+      const costDocs = await Cost.find({
+        date: { $gte: start, $lte: end },
+        ...fieldFilter,
+        ...cultureFilter,
+      })
+        .populate('field', 'name')
+        .populate('crop', 'name')
+        .sort({ date: -1 });
+
+      // Преобразуем в формат, аналогичный предыдущей агрегации
+      financial.costs = costDocs.map(c => ({
+        _id: c._id,
+        date: c.date,
+        category: c.category,
+        item: c.item,
+        quantity: c.quantity,
+        unit: c.unit,
+        pricePerUnit: c.pricePerUnit,
+        totalCost: c.totalCost,
+        fieldName: c.field?.name || '—',
+        cropName: c.crop?.name || '—',
+      }));
     }
 
     data.production = production;
@@ -461,6 +477,7 @@ export const generateReport = async (req, res) => {
 
     res.json({ success: true, data });
   } catch (error) {
+    console.error('Ошибка в generateReport:', error);
     res.status(500).json({ success: false, error: error.message });
   }
 };
@@ -487,19 +504,29 @@ export const forecastYield = async (req, res) => {
     const currentYear = new Date().getFullYear();
     const startYear = currentYear - years;
 
+    // Преобразуем строковые ID в ObjectId для корректного сравнения
+    const cropObjectId = new mongoose.Types.ObjectId(cropId);
+    let fieldObjectId = null;
+    if (fieldId) {
+      fieldObjectId = new mongoose.Types.ObjectId(fieldId);
+    }
+
     // Фильтр для исторических данных
     const match = {
-      crop: cropId,
+      crop: cropObjectId,
       seasonYear: { $gte: startYear, $lt: currentYear },
       finalYield: { $gt: 0 }
     };
-    if (fieldId) match.field = fieldId;
+    if (fieldObjectId) {
+      match.field = fieldObjectId;
+    }
 
     // Получаем среднюю урожайность по годам
     const history = await CropRotationEntry.aggregate([
       { $match: match },
       { $sort: { seasonYear: 1 } },
-      { $group: {
+      {
+        $group: {
           _id: '$seasonYear',
           avgYield: { $avg: '$finalYield' }
         }
@@ -557,8 +584,8 @@ export const forecastYield = async (req, res) => {
       period: `Прогноз на ${currentYear} год`,
       generatedAt: new Date().toISOString(),
       model: method === 'linear_trend' ? 'Линейный тренд' :
-             method === 'moving_avg' ? 'Скользящее среднее (3 года)' :
-             'Среднее арифметическое',
+        method === 'moving_avg' ? 'Скользящее среднее (3 года)' :
+          'Среднее арифметическое',
       area: field?.area || null,
       scenarios: {
         average: {

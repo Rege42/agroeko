@@ -20,12 +20,10 @@ export default {
   data() {
     return {
       reportTypes: [
-        { id: 'daily', title: 'Ежедневный отчет', description: 'Ключевые показатели за день' },
-        { id: 'weekly', title: 'Недельный отчет', description: 'Сводка за 7 дней' },
-        { id: 'monthly', title: 'Месячный отчет', description: 'Анализ продуктивности' },
-        { id: 'seasonal', title: 'Сезонный отчет', description: 'Итоги сезона' },
-        { id: 'fields', title: 'По полям', description: 'Сравнительная аналитика' },
-        { id: 'export', title: 'Экспорт данных', description: 'Выгрузка в Excel/PDF' },
+        { id: 'daily', title: 'Аналитический отчет', description: 'Выручка, затраты, прибыль за период' },
+        { id: 'weekly', title: 'Отчет по урожайности', description: 'В разработке' },
+        { id: 'monthly', title: 'Отчет по полям', description: 'В разработке' },
+        { id: 'seasonal', title: 'Отчет по персоналу', description: 'В разработке' },
       ],
     };
   },
