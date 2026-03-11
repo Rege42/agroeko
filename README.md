@@ -1,6 +1,7 @@
 # ИС «АгроПоле»: Концепция модулей аналитики и севооборота
 
 ## Модуль аналитики
+
 Данный модуль необходим для предоставления аграрным предприятиям мощного инструмента для анализа данных, принятия обоснованных решений, оптимизации производственных и финансовых процессов, а также для планирования развития.
 
 Общий инструментарий для работы с информацией в модуле аналитики:
@@ -33,3 +34,93 @@
 1)	Анализ данных: служит для анализа данных по состоянию и истории поля (севооборот, анализы почвы, урожайность).
 2)	Прогнозирование: на основе анализа данных прогнозирует наиболее подходящие культуры.
 3)	Генерация рекомендаций: создает отчеты с рекомендацией по культурам и технологиям обработки.
+
+# Эндпоинты проекта
+
+## Публичные
+- **GET** `/health` – проверка работоспособности сервера
+- **POST** `/api/auth/login` – аутентификация пользователя, получение JWT-токена
+
+## Аналитика
+- **GET** `/api/analytics/dashboard` – ключевые показатели за период
+- **GET** `/api/analytics/production` – производственные показатели с группировкой
+- **GET** `/api/analytics/financial` – финансовые показатели
+- **GET** `/api/analytics/comparison` – сравнение периодов или факта с планом
+- **POST** `/api/analytics/report` – генерация отчёта по заданным параметрам
+- **GET** `/api/analytics/forecast/yield` – прогноз урожайности
+- **GET** `/api/analytics/forecast/price` – прогноз цен
+
+### Продажи
+- **GET** `/api/analytics/sales` – список продаж (с фильтрацией)
+- **POST** `/api/analytics/sales` – создание новой продажи
+- **GET** `/api/analytics/sales/:id` – получение продажи по ID
+- **PUT** `/api/analytics/sales/:id` – обновление продажи
+- **DELETE** `/api/analytics/sales/:id` – удаление продажи
+
+### Затраты
+- **GET** `/api/analytics/costs` – список затрат
+- **POST** `/api/analytics/costs` – создание записи затрат
+- **GET** `/api/analytics/costs/:id` – получение затраты по ID
+- **PUT** `/api/analytics/costs/:id` – обновление затраты
+- **DELETE** `/api/analytics/costs/:id` – удаление затраты
+
+### Закупки
+- **GET** `/api/analytics/procurements` – список закупок
+- **POST** `/api/analytics/procurements` – создание записи закупки
+- **GET** `/api/analytics/procurements/:id` – получение закупки по ID
+- **PUT** `/api/analytics/procurements/:id` – обновление закупки
+- **DELETE** `/api/analytics/procurements/:id` – удаление закупки
+
+### Затраты на персонал
+- **GET** `/api/analytics/labour-costs` – список затрат на персонал
+- **POST** `/api/analytics/labour-costs` – создание записи затраты
+- **GET** `/api/analytics/labour-costs/:id` – получение затраты по ID
+- **PUT** `/api/analytics/labour-costs/:id` – обновление затрат на персонал
+- **DELETE** `/api/analytics/labour-costs/:id` – удаление затрат на персонал
+
+### Планы
+- **GET** `/api/analytics/plans` – список плановых показателей
+- **POST** `/api/analytics/plans` – создание плана
+- **GET** `/api/analytics/plans/:id` – получение плана по ID
+- **PUT** `/api/analytics/plans/:id` – обновление плана
+- **DELETE** `/api/analytics/plans/:id` – удаление плана
+
+### Экспорт
+- **POST** `/api/analytics/export/excel` – экспорт отчёта в Excel
+- **POST** `/api/analytics/export/pdf` – экспорт отчёта в PDF
+- **POST** `/api/analytics/export/custom` – кастомный экспорт
+
+## Севооборот
+- **GET** `/api/crop-rotation-entries` – список записей севооборота
+- **POST** `/api/crop-rotation-entries` – создание записи севооборота
+- **GET** `/api/crop-rotation-entries/:id` – получение записи по ID
+- **PATCH** `/api/crop-rotation-entries/:id` – обновление записи
+- **DELETE** `/api/crop-rotation-entries/:id` – удаление записи
+
+### Анализы почвы
+- **GET** `/api/soil-analyses` – список анализов почвы
+- **POST** `/api/soil-analyses` – создание анализа почвы
+- **GET** `/api/soil-analyses/:id` – получение анализа по ID
+- **PUT** `/api/soil-analyses/:id` – обновление анализа
+- **DELETE** `/api/soil-analyses/:id` – удаление анализа
+
+### Наблюдения погоды
+- **GET** `/api/weather-observations` – список наблюдений погоды
+- **POST** `/api/weather-observations` – создание наблюдения
+- **GET** `/api/weather-observations/:id` – получение по ID
+- **PUT** `/api/weather-observations/:id` – обновление
+- **DELETE** `/api/weather-observations/:id` – удаление
+
+### Поля
+- **GET** `/api/fields` – список полей (с пагинацией, фильтрацией)
+- **POST** `/api/fields` – создание нового поля
+- **GET** `/api/fields/:id` – получение поля по ID
+- **PATCH** `/api/fields/:id` – обновление поля
+- **DELETE** `/api/fields/:id` – удаление поля
+
+### Культуры
+- **GET** `/api/crops` – список культур
+- **POST** `/api/crops` – создание культуры
+- **GET** `/api/crops/:id` – получение культуры по ID
+- **PATCH** `/api/crops/:id` – обновление культуры
+- **DELETE** `/api/crops/:id` – удаление культуры
