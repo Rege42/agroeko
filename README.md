@@ -63,6 +63,17 @@
     docker compose down -v
     ~~~
 
+# Тестовые пользователи
+### Агроном
+Login: agronom@agropole.local
+
+Password: Password123
+
+### Руководитель предприятия
+Login: director@agropole.local
+
+Password: Password123
+
 # Эндпоинты проекта
 
 ## Публичные
