@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand --config ./jest.config.js"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand --config ./jest.config.js",
+    "seed": "node src/seeds/seed-script.js"
   },
   "keywords": [],
   "author": "",

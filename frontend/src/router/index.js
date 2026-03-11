@@ -18,10 +18,11 @@ import FieldHistory from "../components/crop-rotation/crops-history/FieldHistory
 import FieldEdit from "../components/crop-rotation/add-field/FieldEdit.vue";
 import AddCropsHistoryForm from "../components/crop-rotation/crops-history/AddCropsHistoryForm.vue";
 import LoginView from "../components/views/LoginView.vue";
+import AgroPlanList from "../components/crop-rotation/agrotechnical-plan/AgroPlanList.vue";
 import { isAuthenticated } from "../services/authService";
 
 const routes = [
-    {
+  {
     path: "/",
     redirect: "/forecast",
   },
@@ -43,21 +44,23 @@ const routes = [
     component: ForecastResult,
     meta: { requiresAuth: true },
   },
-  { 
-    path: "/reports", 
-    name: "Reports", 
-    component: Reports, 
-    meta: { requiresAuth: true } 
+  {
+    path: "/reports",
+    name: "Reports",
+    component: Reports,
+    meta: { requiresAuth: true },
   },
-  { path: "/reports/new",
-    name: "ReportForm", 
-    component: ReportForm, 
-    meta: { requiresAuth: true } 
+  {
+    path: "/reports/new",
+    name: "ReportForm",
+    component: ReportForm,
+    meta: { requiresAuth: true },
   },
-  { path: "/reports/result", 
-    name: "ReportResult", 
-    component: ReportResult, 
-    meta: { requiresAuth: true } 
+  {
+    path: "/reports/result",
+    name: "ReportResult",
+    component: ReportResult,
+    meta: { requiresAuth: true },
   },
   {
     path: "/indicators",
@@ -87,12 +90,6 @@ const routes = [
     path: "/crop-rotation/fields/:id",
     name: "FieldEdit",
     component: FieldEdit,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: "/crop-rotation/agroplan",
-    name: "AgroPlan",
-    component: AgroPlan,
     meta: { requiresAuth: true },
   },
   {
@@ -149,6 +146,24 @@ const routes = [
     path: "/crop-rotation/history/:fieldId/edit/:entryId",
     name: "CropRotationEdit",
     component: AddCropsHistoryForm,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/crop-rotation/compatibility",
+    name: "CropsCompatibility",
+    component: CropsCompatibility,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/crop-rotation/crop-selection/:fieldId?",
+    name: "CropSelection",
+    component: CropSelection,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/crop-rotation/agro-plans",
+    name: "AgroPlanList",
+    component: AgroPlanList,
     meta: { requiresAuth: true },
   },
   {

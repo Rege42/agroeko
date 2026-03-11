@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "chart.js": "^4.5.1",
-    "express-validator": "^7.3.1"
-  }
-}

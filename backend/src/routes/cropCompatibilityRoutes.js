@@ -1,32 +1,26 @@
-import express from "express";
+import { Router } from "express";
 import {
-  exportToExcel,
-  exportToPDF,
-  customExport,
-} from "../controllers/exportController.js";
+  getCropCompatibilityMatrixController,
+  getCropSelection,
+} from "../controllers/cropCompatibilityController.js";
 import { authenticateJWT } from "../middlewares/authenticateJWT.js";
 import { authorizeRoles } from "../middlewares/authorizeRoles.js";
 import { ROLES } from "../constants/roles.js";
 
-const router = express.Router();
+const router = Router();
 
-router.post(
-  "/excel",
+router.get(
+  "/matrix",
   authenticateJWT,
   authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER),
-  exportToExcel,
+  getCropCompatibilityMatrixController,
 );
-router.post(
-  "/pdf",
+
+router.get(
+  "/crop-selection/:fieldId",
   authenticateJWT,
   authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER),
-  exportToPDF,
-);
-router.post(
-  "/custom",
-  authenticateJWT,
-  authorizeRoles(ROLES.AGRONOMIST, ROLES.MANAGER),
-  customExport,
+  getCropSelection,
 );
 
 export default router;
