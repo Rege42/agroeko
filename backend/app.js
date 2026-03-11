@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import {
   requestLoggerConsole,
   requestLoggerFile,
@@ -65,10 +66,14 @@ app.use("/api/crop-compatibility", cropCompatibilityRoutes);
 app.use("/api/agro-plans", agroPlanRoutes);
 app.use("/api/agro-plan-steps", agroPlanStepRoutes);
 
-app.get("/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Server is running",
+app.get('/health', (req, res) => {
+  const mongoState = mongoose.connection.readyState;
+  const mongoOk = mongoState === 1;
+
+  res.status(mongoOk ? 200 : 503).json({
+    status: mongoOk ? 'ok' : 'degraded',
+    service: 'backend',
+    mongodb: mongoOk ? 'connected' : 'disconnected',
     timestamp: new Date().toISOString(),
   });
 });

@@ -4,13 +4,6 @@
 # dependencies
 node_modules/
 
-# environment variables
-.env
-.env.test
-
-# debug-scripts
-backend\src\seed-script.js
-
 # logs
 logs/
 
