@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs";
 import { createStream } from "rotating-file-stream";
 
-const logDirectory = path.join(process.cwd(), "logs");
+const logDirectory = path.join(process.cwd(), "../logs");
 
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 

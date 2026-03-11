@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y libcurl4 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 COPY . .
 
