@@ -1,0 +1,57 @@
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: agroeko-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - agroeko-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agroeko-frontend
+    restart: unless-stopped
+    networks:
+      - agroeko-net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: agroeko-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.production
+    depends_on:
+      - mongodb
+    networks:
+      - agroeko-net
+    expose:
+      - "3000"
+
+  mongodb:
+    image: mongo:7
+    container_name: agroeko-mongodb
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: agropoeco
+    networks:
+      - agroeko-net
+
+volumes:
+  mongo_data:
+
+networks:
+  agroeko-net:
+    driver: bridge
