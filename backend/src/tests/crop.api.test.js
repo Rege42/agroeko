@@ -1,11 +1,13 @@
 import request from "supertest";
-import mongoose from "mongoose";
-import app from "../app.js";
+import app from "../../app.js";
 import { Crop } from "../models/index.js";
+import { createUserAndToken, ROLES } from "./authHelper.js";
 
 describe("API /api/crops", () => {
   describe("POST /api/crops", () => {
     it("должен успешно создать культуру", async () => {
+      const { token } = await createUserAndToken(ROLES.MANAGER);
+
       const payload = {
         name: "Пшеница озимая",
         type: "grain",
@@ -17,7 +19,10 @@ describe("API /api/crops", () => {
         maxRecommendedPh: 7.5,
         notes: "Тестовая культура",
       };
-      const response = await request(app).post("/api/crops").send(payload);
+      const response = await request(app)
+        .post("/api/crops")
+        .set("Authorization", `Bearer ${token}`)
+        .send(payload);
       expect(response.status).toBe(201);
       expect(response.body.success).toBe(true);
       expect(response.body.message).toBe("Культура успешно создана");
@@ -28,6 +33,8 @@ describe("API /api/crops", () => {
     });
 
     it("должен вернуть 400 при minRecommendedPh больше maxRecommendedPh", async () => {
+      const { token } = await createUserAndToken(ROLES.MANAGER);
+
       const payload = {
         name: "Кукуруза",
         type: "grain",
@@ -35,7 +42,10 @@ describe("API /api/crops", () => {
         minRecommendedPh: 8,
         maxRecommendedPh: 6,
       };
-      const response = await request(app).post("/api/crops").send(payload);
+      const response = await request(app)
+        .post("/api/crops")
+        .set("Authorization", `Bearer ${token}`)
+        .send(payload);
 
       expect(response.status).toBe(400);
       expect(response.body.success).toBe(false);

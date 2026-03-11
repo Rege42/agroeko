@@ -1,15 +1,14 @@
 import express from "express";
-import morgan from "morgan";
 import {
   requestLoggerConsole,
   requestLoggerFile,
-} from "./middlewares/requestLogger.js";
-import saleRoutes from "./routes/saleRoutes.js";
-import costRoutes from "./routes/costRoutes.js";
-import procurementRoutes from "./routes/procurementRoutes.js";
-import labourCostRoutes from "./routes/labourCostRoutes.js";
-import planRoutes from "./routes/planRoutes.js";
-import errorHandler from "./middlewares/errorHandler.js";
+} from "./src/middlewares/requestLogger.js";
+import saleRoutes from "./src/routes/saleRoutes.js";
+import costRoutes from "./src/routes/costRoutes.js";
+import procurementRoutes from "./src/routes/procurementRoutes.js";
+import labourCostRoutes from "./src/routes/labourCostRoutes.js";
+import planRoutes from "./src/routes/planRoutes.js";
+import errorHandler from "./src/middlewares/errorHandler.js";
 import {
   getDashboard,
   getProduction,
@@ -18,17 +17,17 @@ import {
   generateReport,
   forecastYield,
   forecastPrice,
-} from "./controllers/analyticsController.js";
-import exportRoutes from "./routes/exportRoutes.js";
-import fieldRoutes from "./routes/fieldRoutes.js";
-import cropRoutes from "./routes/cropRoutes.js";
-import cropRotationEntryRoutes from "./routes/cropRotationEntryRoutes.js";
-import authRoutes from "./routes/authRoutes.js";
-import soilAnalysisRoutes from "./routes/soilAnalysisRoutes.js";
-import weatherObservationRoutes from "./routes/weatherObservationRoutes.js";
-import cropCompatibilityRoutes from "./routes/cropCompatibilityRoutes.js";
-import agroPlanRoutes from "./routes/agroPlanRoutes.js";
-import agroPlanStepRoutes from "./routes/agroPlanStepRoutes.js";
+} from "./src/controllers/analyticsController.js";
+import exportRoutes from "./src/routes/exportRoutes.js";
+import fieldRoutes from "./src/routes/fieldRoutes.js";
+import cropRoutes from "./src/routes/cropRoutes.js";
+import cropRotationEntryRoutes from "./src/routes/cropRotationEntryRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
+import soilAnalysisRoutes from "./src/routes/soilAnalysisRoutes.js";
+import weatherObservationRoutes from "./src/routes/weatherObservationRoutes.js";
+import cropCompatibilityRoutes from "./src/routes/cropCompatibilityRoutes.js";
+import agroPlanRoutes from "./src/routes/agroPlanRoutes.js";
+import agroPlanStepRoutes from "./src/routes/agroPlanStepRoutes.js";
 
 const app = express();
 

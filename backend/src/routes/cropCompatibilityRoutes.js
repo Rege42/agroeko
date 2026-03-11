@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { getCropCompatibilityMatrixController, getCropSelection } from "../controllers/cropCompatibilityController.js";
+import {
+  getCropCompatibilityMatrixController,
+  getCropSelection,
+} from "../controllers/cropCompatibilityController.js";
 import { authenticateJWT } from "../middlewares/authenticateJWT.js";
 import { authorizeRoles } from "../middlewares/authorizeRoles.js";
 import { ROLES } from "../constants/roles.js";

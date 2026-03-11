@@ -1,6 +1,6 @@
 export default {
   testEnvironment: 'node',
-  setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/tests/setup.js'],
   testMatch: ['**/tests/**/*.test.js'],
   verbose: true,
   testTimeout: 30000,

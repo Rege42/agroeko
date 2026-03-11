@@ -16,6 +16,8 @@ import Procurement from './Procurement.js';
 import LabourCost from './LabourCost.js';
 import Plan from './Plan.js';
 import CropRotationGroup from './CropRotationGroup.js';
+import CropCompatibilityRule from './CropCompatibilityRule.js';
+import User from './User.js';
 
 export {
   Field,
@@ -36,4 +38,6 @@ export {
   LabourCost,
   Plan,
   CropRotationGroup,
+  CropCompatibilityRule,
+  User
 };
